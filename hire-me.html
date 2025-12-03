@@ -8,6 +8,8 @@
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -25,7 +27,8 @@
     </style>
 </head>
 
-<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 transition-colors duration-300">
+<body
+    class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 transition-colors duration-300 overflow-x-hidden">
 
 
     <div class="min-h-screen flex flex-col items-center p-4 sm:p-8">
@@ -50,14 +53,14 @@
                     <div>
                         <label for="full_name"
                             class="block text-sm font-medium text-slate-700 dark:text-slate-400 mb-2">Full Name</label>
-                        <input type="text" id="full_name" name="full_name" required
+                        <input type="text" id="full_name" name="full_name" required placeholder="e.g., John Doe"
                             class="w-full p-3 bg-slate-100 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                     </div>
                     <div>
                         <label for="email"
                             class="block text-sm font-medium text-slate-700 dark:text-slate-400 mb-2">Email
                             Address</label>
-                        <input type="email" id="email" name="email" required
+                        <input type="email" id="email" name="email" required placeholder="e.g., john@example.com"
                             class="w-full p-3 bg-slate-100 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                     </div>
                 </div>
@@ -69,7 +72,7 @@
                             class="block text-sm font-medium text-slate-700 dark:text-slate-400 mb-2">Target Job
                             Role</label>
                         <input type="text" id="target_role" name="target_role"
-                            placeholder="e.g., Senior Frontend Developer" required
+                            placeholder="e.g., SOC Analyst, Security Engineer" required
                             class="w-full p-3 bg-slate-100 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                     </div>
                     <div>
@@ -115,10 +118,42 @@
                 </div>
 
                 <div class="pt-4">
-                    <button type="submit"
-                        class="w-full px-6 py-3 bg-blue-600 text-white text-lg font-bold rounded-xl shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-[1.01]">
-                        Submit Application
+                    <button type="submit" id="hire-submit-btn"
+                        class="w-full px-6 py-3 bg-blue-600 text-white text-lg font-bold rounded-xl shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-[1.01] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                        <span id="hire-btn-text">Submit Application</span>
+                        <i id="hire-btn-icon" data-lucide="send" class="w-5 h-5"></i>
+                        <!-- Loading Spinner -->
+                        <svg id="hire-btn-loading" class="animate-spin h-5 w-5 text-white hidden"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                            </circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                            </path>
+                        </svg>
                     </button>
+                </div>
+
+                <!-- Success Message -->
+                <div id="hire-success"
+                    class="hidden p-4 rounded-xl bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 flex items-center gap-3">
+                    <i data-lucide="check-circle" class="w-6 h-6 shrink-0"></i>
+                    <div>
+                        <h4 class="font-bold">Application Received!</h4>
+                        <p class="text-sm">Thank you for your interest. I will review your application and get back to
+                            you soon.</p>
+                    </div>
+                </div>
+
+                <!-- Error Message -->
+                <div id="hire-error"
+                    class="hidden p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 flex items-center gap-3">
+                    <i data-lucide="alert-circle" class="w-6 h-6 shrink-0"></i>
+                    <div>
+                        <h4 class="font-bold">Submission Failed</h4>
+                        <p class="text-sm">Something went wrong. Please try again or contact me directly via WhatsApp.
+                        </p>
+                    </div>
                 </div>
             </form>
 
@@ -229,6 +264,9 @@
     </div>
 
     <script>
+        // Initialize Icons
+        lucide.createIcons();
+
         function showMap() {
             // Hide the click button/placeholder
             document.getElementById('map-placeholder').classList.add('hidden');
@@ -284,6 +322,66 @@
                 }
             }
         });
+
+        // Form Submission Handler
+        const hireForm = document.querySelector('form');
+        if (hireForm) {
+            const hireSubmitBtn = document.getElementById('hire-submit-btn');
+            const hireBtnText = document.getElementById('hire-btn-text');
+            const hireBtnLoading = document.getElementById('hire-btn-loading');
+            const hireBtnIcon = document.getElementById('hire-btn-icon');
+            const hireSuccessMsg = document.getElementById('hire-success');
+            const hireErrorMsg = document.getElementById('hire-error');
+
+            hireForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                // Show loading state
+                hireSubmitBtn.disabled = true;
+                hireBtnText.classList.add('hidden');
+                hireBtnIcon.classList.add('hidden');
+                hireBtnLoading.classList.remove('hidden');
+
+                // Hide any previous messages
+                hireSuccessMsg.classList.add('hidden');
+                hireErrorMsg.classList.add('hidden');
+
+                try {
+                    const formData = new FormData(hireForm);
+                    const response = await fetch(hireForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        // Show success message
+                        hireSuccessMsg.classList.remove('hidden');
+                        hireForm.reset();
+
+                        // Reinitialize icons
+                        lucide.createIcons();
+                    } else {
+                        // Show error message
+                        hireErrorMsg.classList.remove('hidden');
+                        lucide.createIcons();
+                    }
+                } catch (error) {
+                    // Show error message
+                    hireErrorMsg.classList.remove('hidden');
+                    lucide.createIcons();
+                    console.error('Form submission error:', error);
+                } finally {
+                    // Reset button state
+                    hireSubmitBtn.disabled = false;
+                    hireBtnText.classList.remove('hidden');
+                    hireBtnIcon.classList.remove('hidden');
+                    hireBtnLoading.classList.add('hidden');
+                }
+            });
+        }
     </script>
 </body>
 
