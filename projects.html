@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="dark scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -11,6 +11,23 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Tailwind Config for Custom Colors/Fonts -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            850: '#1e293b', // Custom dark shade
+                            950: '#020617', // Custom darker shade
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -20,46 +37,34 @@
 
     <style>
         .gradient-text {
-            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #60a5fa, #22d3ee, #2563eb);
         }
     </style>
 </head>
 
 <body class="bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300">
 
-    <!-- Animated Background -->
-    <div class="fixed inset-0 -z-10 overflow-hidden">
-        <!-- Gradient Orbs -->
+    <!-- Clean Background -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <!-- Simple Gradient Background -->
         <div
-            class="absolute top-0 -left-4 w-72 h-72 bg-purple-300 dark:bg-purple-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-20 dark:opacity-10 animate-blob">
-        </div>
-        <div
-            class="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 dark:bg-yellow-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-20 dark:opacity-10 animate-blob animation-delay-2000">
-        </div>
-        <div
-            class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 dark:bg-pink-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-20 dark:opacity-10 animate-blob animation-delay-4000">
-        </div>
-        <div
-            class="absolute bottom-0 right-20 w-72 h-72 bg-blue-300 dark:bg-blue-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-20 dark:opacity-10 animate-blob animation-delay-6000">
-        </div>
-
-        <!-- Subtle Grid Pattern -->
-        <div class="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"
-            style="background-image: linear-gradient(#3b82f6 1px, transparent 1px), linear-gradient(90deg, #3b82f6 1px, transparent 1px); background-size: 50px 50px;">
+            class="absolute inset-0 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900">
         </div>
     </div>
+
 
     <!-- Navigation -->
     <nav
         class="fixed top-0 w-full z-50 backdrop-blur-md border-b border-gray-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
             <!-- Logo -->
-            <a href="index.html" class="font-bold text-xl tracking-tighter flex items-center gap-2">
-                <i data-lucide="shield" class="text-blue-500 w-6 h-6"></i>
-                <span class="dark:text-white text-slate-900">MAHIM<span class="text-blue-500">SEC</span></span>
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="text-3xl leading-none">🛡️</span>
+                <span class="font-bold text-xl tracking-tighter dark:text-white text-slate-900">MAHIM<span
+                        class="text-blue-500">SEC</span></span>
             </a>
 
             <!-- Desktop Menu -->
@@ -502,9 +507,21 @@
         const toggleBtns = document.querySelectorAll('#theme-toggle, #theme-toggle-mobile');
         const html = document.documentElement;
 
+        // Check local storage
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+
         toggleBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 html.classList.toggle('dark');
+                if (html.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
             });
         });
 

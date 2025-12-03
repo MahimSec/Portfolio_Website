@@ -123,34 +123,40 @@
 <body
     class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-200 transition-colors duration-300 min-h-screen relative">
 
-    <!-- Background Effects (HTB Academy Style) -->
+    <!-- Background Effects (Subtle) -->
     <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <!-- Gradient Background -->
+        <!-- Simple Gradient Background -->
         <div
-            class="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50 dark:from-slate-950 dark:via-blue-950/20 dark:to-slate-950">
+            class="absolute inset-0 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900">
         </div>
 
-        <!-- Geometric Shapes -->
-        <div class="absolute top-20 right-20 w-96 h-96 bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-20 left-20 w-80 h-80 bg-cyan-500/5 dark:bg-cyan-500/10 rounded-full blur-3xl"></div>
+        <!-- Very Subtle Geometric Shapes -->
         <div
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-400/3 dark:bg-blue-600/5 rounded-full blur-3xl">
+            class="absolute top-20 right-20 w-96 h-96 bg-blue-500/[0.02] dark:bg-blue-500/[0.03] rounded-full blur-3xl">
+        </div>
+        <div
+            class="absolute bottom-20 left-20 w-80 h-80 bg-cyan-500/[0.02] dark:bg-cyan-500/[0.03] rounded-full blur-3xl">
+        </div>
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-400/[0.015] dark:bg-blue-600/[0.02] rounded-full blur-3xl">
         </div>
 
-        <!-- Subtle Grid Pattern -->
-        <div class="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"
+        <!-- Very Faint Grid Pattern -->
+        <div class="absolute inset-0 opacity-[0.01] dark:opacity-[0.015]"
             style="background-image: linear-gradient(#3b82f6 1px, transparent 1px), linear-gradient(90deg, #3b82f6 1px, transparent 1px); background-size: 50px 50px;">
         </div>
     </div>
+
 
     <!-- Navigation -->
     <nav
         class="fixed top-0 w-full z-50 backdrop-blur-md border-b border-gray-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
             <!-- Logo -->
-            <a href="#home" class="font-bold text-xl tracking-tighter flex items-center gap-2">
-                <i data-lucide="shield" class="text-blue-500 w-6 h-6"></i>
-                <span class="dark:text-white text-slate-900">MAHIM<span class="text-blue-500">SEC</span></span>
+            <a href="#home" class="flex items-center gap-2">
+                <span class="text-2xl leading-none">🛡️</span>
+                <span class="font-bold text-xl tracking-tighter dark:text-white text-slate-900">Mahim<span
+                        class="text-blue-500">Sec</span></span>
             </a>
 
             <!-- Desktop Menu -->
@@ -220,34 +226,7 @@
         <!-- Hero Section -->
         <!-- Hero Section -->
         <section id="home"
-            class="min-h-screen flex items-center justify-center px-6 relative overflow-hidden bg-[#0a0f1e]">
-            <!-- Cyber Background Elements -->
-            <div class="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
-                <!-- Grid & Glow -->
-                <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20">
-                </div>
-                <div
-                    class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-blue-900/10 via-slate-900/50 to-slate-950">
-                </div>
-
-                <!-- Floating Cyber Text -->
-                <div class="absolute top-20 left-10 text-cyan-900/20 font-mono text-sm">SSH:22</div>
-                <div class="absolute top-40 right-20 text-blue-900/20 font-mono text-xs">0x4A2F</div>
-                <div class="absolute bottom-32 left-20 text-green-900/20 font-mono text-xs">0xFF00</div>
-                <div class="absolute top-1/2 right-10 text-red-900/20 font-mono text-xs">THREAT</div>
-                <div class="absolute bottom-20 right-40 text-purple-900/20 font-mono text-xs">EXPLOIT</div>
-                <div class="absolute top-32 left-1/4 text-slate-800/30 font-mono text-4xl font-bold opacity-10">IPS
-                </div>
-                <div class="absolute bottom-40 right-1/4 text-slate-800/30 font-mono text-4xl font-bold opacity-10">SIEM
-                </div>
-
-                <!-- Geometric Lines -->
-                <svg class="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="20%" cy="40%" r="150" fill="none" stroke="#3b82f6" stroke-width="1" />
-                    <circle cx="80%" cy="70%" r="200" fill="none" stroke="#8b5cf6" stroke-width="1" />
-                    <path d="M0,100 Q400,50 800,100 T1600,100" fill="none" stroke="#06b6d4" stroke-width="0.5" />
-                </svg>
-            </div>
+            class="min-h-screen flex items-center justify-center px-6 relative overflow-hidden bg-slate-50 dark:bg-slate-950">
 
             <div
                 class="max-w-7xl mx-auto w-full relative z-10 flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20">
@@ -272,10 +251,8 @@
 
                 <!-- Right Column: Content -->
                 <div class="flex-1 text-center md:text-left" data-aos="fade-left">
-                    <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
-                        Hi, I'm <span
-                            class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Md. Mahim
-                            Hossain</span>
+                    <h1 class="text-5xl md:text-7xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
+                        Hi, I'm <span class="gradient-text">Md. Mahim Hossain</span>
                     </h1>
 
                     <div class="text-lg md:text-xl text-slate-400 font-light mb-6 leading-relaxed">
@@ -295,17 +272,18 @@
                             <i data-lucide="linkedin" class="w-5 h-5"></i> LinkedIn
                         </a>
                         <a href="projects.html"
-                            class="flex items-center gap-2 px-6 py-3 rounded-lg border font-medium transition-all border-slate-700 hover:bg-slate-800 text-white hover:border-cyan-500/50">
+                            class="flex items-center gap-2 px-6 py-3 rounded-lg border font-medium transition-all border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-white hover:border-blue-500/50 dark:hover:border-cyan-500/50">
                             <i data-lucide="folder-code" class="w-5 h-5"></i> Projects
                         </a>
                         <a href="javascript:void(0)" onclick="openCVModal()"
-                            class="flex items-center gap-2 px-6 py-3 rounded-lg border font-medium transition-all border-slate-700 hover:bg-slate-800 text-white hover:border-cyan-500/50">
+                            class="flex items-center gap-2 px-6 py-3 rounded-lg border font-medium transition-all border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-white hover:border-blue-500/50 dark:hover:border-cyan-500/50">
                             <i data-lucide="file-text" class="w-5 h-5"></i> Resume
                         </a>
-                        <a href="hire-me.html"
-                            class="flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-medium transition-all shadow-lg shadow-cyan-500/25">
+                        <a href="javascript:void(0)" onclick="openHireMeModal()"
+                            class="flex items-center gap-2 px-6 py-3 rounded-lg border font-medium transition-all border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-white hover:border-blue-500/50 dark:hover:border-cyan-500/50">
                             <i data-lucide="briefcase" class="w-5 h-5"></i> Hire Me
                         </a>
+
                     </div>
 
 
@@ -315,7 +293,7 @@
         </section>
 
         <!-- About Me Section -->
-        <section id="about-me" class="min-h-screen flex items-center py-24 px-6">
+        <section id="about-me" class="min-h-screen flex items-center py-24 px-6 bg-slate-50 dark:bg-slate-950">
             <div class="max-w-4xl mx-auto">
                 <div class="mb-16" data-aos="fade-up">
                     <h2 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">About Me</h2>
@@ -346,7 +324,7 @@
 
 
         <!-- Experience Section -->
-        <section id="experience" class="py-20 px-6">
+        <section id="experience" class="py-20 px-6 bg-slate-50 dark:bg-slate-950">
             <div class="max-w-5xl mx-auto">
                 <div class="mb-12 text-center" data-aos="fade-up">
                     <h2 class="text-3xl md:text-4xl font-bold gradient-text inline-block">Professional Experience</h2>
@@ -458,7 +436,7 @@
 
 
         <!-- Skills Section -->
-        <section id="skills" class="py-20 px-6 bg-slate-100/50 dark:bg-slate-900/50">
+        <section id="skills" class="py-20 px-6 bg-slate-50 dark:bg-slate-950">
             <div class="max-w-7xl mx-auto">
                 <div class="mb-12 text-center" data-aos="fade-up">
                     <h2 class="text-3xl md:text-4xl font-bold gradient-text inline-block">Core Skills & Competencies
@@ -1149,7 +1127,7 @@
         </div>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-20 px-6">
+        <section id="contact" class="py-20 px-6 bg-slate-50 dark:bg-slate-950">
             <div class="max-w-4xl mx-auto">
                 <div class="mb-12 text-center" data-aos="fade-up">
                     <h2 class="text-3xl md:text-4xl font-bold gradient-text inline-block">Connect With Me</h2>
@@ -1253,7 +1231,7 @@
 
         <!-- Footer -->
         <footer
-            class="py-8 text-center border-t border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-500">
+            class="py-8 text-center border-t border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-500 bg-slate-50 dark:bg-slate-950">
             <p class="text-sm">
                 © <span id="year"></span> Md. Mahim Hossain. All rights reserved.
             </p>
@@ -1428,6 +1406,7 @@
                     <ul id="modal-features" class="space-y-2"></ul>
                 </div>
 
+
                 <!-- Outcomes -->
                 <div>
                     <h4 class="text-lg font-bold mb-3 text-slate-900 dark:text-white">Outcomes & Impact</h4>
@@ -1437,7 +1416,43 @@
         </div>
     </div>
 
+    <!-- Hire Me Modal -->
+    <div id="hire-me-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-slate-900/95 backdrop-blur-sm" onclick="closeHireMeModal()"></div>
+
+        <!-- Modal Content -->
+        <div
+            class="relative z-10 w-full max-w-6xl h-[95vh] bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden flex flex-col">
+
+            <!-- Header -->
+            <div
+                class="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 rounded-lg bg-blue-500/10 text-blue-500">
+                        <i data-lucide="briefcase" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 dark:text-white">Hire Me</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Job Application & Contact</p>
+                    </div>
+                </div>
+
+                <button onclick="closeHireMeModal()"
+                    class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Iframe Container -->
+            <div class="flex-1 overflow-hidden bg-slate-100 dark:bg-slate-950">
+                <iframe id="hire-me-iframe" src="" class="w-full h-full border-0" title="Hire Me Form"></iframe>
+            </div>
+        </div>
+    </div>
+
     <!-- AOS JavaScript file must be loaded AFTER its CSS link in the <head> but BEFORE any calls to AOS.init() -->
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <!-- Scripts -->
@@ -1456,12 +1471,36 @@
         document.getElementById('year').textContent = new Date().getFullYear();
 
         // Theme Toggle Logic
+
         const toggleBtns = document.querySelectorAll('#theme-toggle, #theme-toggle-mobile');
         const html = document.documentElement;
+
+        // Check local storage
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
 
         toggleBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 html.classList.toggle('dark');
+                const isDark = html.classList.contains('dark');
+
+                if (isDark) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+
+                // Send message to iframe if it exists
+                const hireMeIframe = document.getElementById('hire-me-iframe');
+                if (hireMeIframe && hireMeIframe.contentWindow) {
+                    hireMeIframe.contentWindow.postMessage({
+                        type: 'theme-change',
+                        theme: isDark ? 'dark' : 'light'
+                    }, '*');
+                }
             });
         });
 
@@ -2258,7 +2297,47 @@ END:VCARD`;
             }, 300);
         }
 
-        // Close CV modal on escape key
+        // Hire Me Modal Functions
+        function openHireMeModal() {
+            const modal = document.getElementById('hire-me-modal');
+            const iframe = document.getElementById('hire-me-iframe');
+
+            // Load the iframe content
+            iframe.src = 'hire-me.html';
+
+            // Show modal
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+
+            // Reinitialize icons for the modal
+            setTimeout(() => {
+                lucide.createIcons();
+            }, 100);
+        }
+
+        function closeHireMeModal() {
+            const modal = document.getElementById('hire-me-modal');
+            const iframe = document.getElementById('hire-me-iframe');
+
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+
+            // Clear iframe src to stop any running scripts
+            setTimeout(() => {
+                iframe.src = '';
+            }, 300);
+        }
+
+        // Listen for messages from iframe to close modal
+        window.addEventListener('message', function (event) {
+            if (event.data && event.data.type === 'close-hire-me-modal') {
+                closeHireMeModal();
+            }
+        });
+
+        // Close modals on escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 const cvModal = document.getElementById('cv-modal');
@@ -2268,6 +2347,10 @@ END:VCARD`;
                 const shareModal = document.getElementById('share-modal');
                 if (shareModal && !shareModal.classList.contains('hidden')) {
                     closeShareModal();
+                }
+                const hireMeModal = document.getElementById('hire-me-modal');
+                if (hireMeModal && !hireMeModal.classList.contains('hidden')) {
+                    closeHireMeModal();
                 }
             }
         });

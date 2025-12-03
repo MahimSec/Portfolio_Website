@@ -114,34 +114,24 @@
 <body
     class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-200 transition-colors duration-300 min-h-screen relative">
 
-    <!-- Background Effects -->
+    <!-- Clean Background -->
     <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <!-- Gradient Background -->
+        <!-- Simple Gradient Background -->
         <div
-            class="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50 dark:from-slate-950 dark:via-blue-950/20 dark:to-slate-950">
-        </div>
-
-        <!-- Geometric Shapes -->
-        <div class="absolute top-20 right-20 w-96 h-96 bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-20 left-20 w-80 h-80 bg-cyan-500/5 dark:bg-cyan-500/10 rounded-full blur-3xl"></div>
-        <div
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-400/3 dark:bg-blue-600/5 rounded-full blur-3xl">
-        </div>
-
-        <!-- Subtle Grid Pattern -->
-        <div class="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"
-            style="background-image: linear-gradient(#3b82f6 1px, transparent 1px), linear-gradient(90deg, #3b82f6 1px, transparent 1px); background-size: 50px 50px;">
+            class="absolute inset-0 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900">
         </div>
     </div>
+
 
     <!-- Navigation -->
     <nav
         class="fixed top-0 w-full z-50 backdrop-blur-md border-b border-gray-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
             <!-- Logo -->
-            <a href="index.html" class="font-bold text-xl tracking-tighter flex items-center gap-2">
-                <i data-lucide="shield" class="text-blue-500 w-6 h-6"></i>
-                <span class="dark:text-white text-slate-900">MAHIM<span class="text-blue-500">SEC</span></span>
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="text-3xl leading-none">🛡️</span>
+                <span class="font-bold text-xl tracking-tighter dark:text-white text-slate-900">MAHIM<span
+                        class="text-blue-500">SEC</span></span>
             </a>
 
             <!-- Desktop Menu -->
@@ -360,17 +350,17 @@
         </section>
 
         <!-- CTA Section -->
-        <section class="py-20 px-6 bg-gradient-to-r from-blue-600 to-cyan-600">
+        <section class="py-20 px-6">
             <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                <h2 class="text-3xl md:text-4xl font-bold gradient-text inline-block mb-4">
                     Want to Learn More?
                 </h2>
-                <p class="text-blue-100 text-lg mb-8">
+                <p class="text-slate-600 dark:text-slate-400 text-lg mb-8">
                     Follow me on Medium for the latest articles on cybersecurity, threat detection, and security
                     monitoring.
                 </p>
                 <a href="https://medium.com/@mahimsec" target="_blank"
-                    class="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-white text-blue-600 font-bold hover:bg-blue-50 transition-all shadow-lg">
+                    class="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-bold hover:from-blue-700 hover:to-cyan-700 transition-all shadow-lg shadow-blue-500/25">
                     <i data-lucide="external-link" class="w-5 h-5"></i>
                     Visit My Medium Profile
                 </a>
@@ -535,9 +525,21 @@
         const toggleBtns = document.querySelectorAll('#theme-toggle, #theme-toggle-mobile');
         const html = document.documentElement;
 
+        // Check local storage
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+
         toggleBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 html.classList.toggle('dark');
+                if (html.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
             });
         });
 
