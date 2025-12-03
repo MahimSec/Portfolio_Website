@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles & Guides - Md. Mahim Hossain</title>
+    <meta name="description"
+        content="Technical articles and guides on cybersecurity, SIEM, threat detection, and security monitoring by Md. Mahim Hossain.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config for Custom Colors/Fonts -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            850: '#1e293b',
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- AOS Animation Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- QRCode.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #60a5fa, #22d3ee, #2563eb);
+        }
+
+        /* Article Card Hover Effect */
+        .article-card {
+            transition: all 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-8px);
+        }
+
+        /* Article Modal Styles */
+        .article-modal-overlay {
+            backdrop-filter: blur(8px);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .article-modal-content {
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-200 transition-colors duration-300 min-h-screen relative">
+
+    <!-- Background Effects -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <!-- Gradient Background -->
+        <div
+            class="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50 dark:from-slate-950 dark:via-blue-950/20 dark:to-slate-950">
+        </div>
+
+        <!-- Geometric Shapes -->
+        <div class="absolute top-20 right-20 w-96 h-96 bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 left-20 w-80 h-80 bg-cyan-500/5 dark:bg-cyan-500/10 rounded-full blur-3xl"></div>
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-400/3 dark:bg-blue-600/5 rounded-full blur-3xl">
+        </div>
+
+        <!-- Subtle Grid Pattern -->
+        <div class="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"
+            style="background-image: linear-gradient(#3b82f6 1px, transparent 1px), linear-gradient(90deg, #3b82f6 1px, transparent 1px); background-size: 50px 50px;">
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav
+        class="fixed top-0 w-full z-50 backdrop-blur-md border-b border-gray-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="font-bold text-xl tracking-tighter flex items-center gap-2">
+                <i data-lucide="shield" class="text-blue-500 w-6 h-6"></i>
+                <span class="dark:text-white text-slate-900">MAHIM<span class="text-blue-500">SEC</span></span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html"
+                    class="text-sm font-medium hover:text-blue-500 transition-colors dark:text-slate-400 text-slate-600">Home</a>
+                <a href="articles.html" class="text-sm font-medium text-blue-500">Article</a>
+                <a href="education.html"
+                    class="text-sm font-medium hover:text-blue-500 transition-colors dark:text-slate-400 text-slate-600">Education</a>
+                <a href="certifications.html"
+                    class="text-sm font-medium hover:text-blue-500 transition-colors dark:text-slate-400 text-slate-600">Certification</a>
+                <a href="projects.html"
+                    class="text-sm font-medium hover:text-blue-500 transition-colors dark:text-slate-400 text-slate-600">Projects</a>
+
+                <!-- Dark Mode Toggle -->
+                <button id="theme-toggle"
+                    class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800/50 transition-colors">
+                    <i data-lucide="sun" class="w-5 h-5 text-yellow-400 hidden dark:block"></i>
+                    <i data-lucide="moon" class="w-5 h-5 text-slate-700 block dark:hidden"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <div class="md:hidden flex items-center gap-4">
+                <button id="theme-toggle-mobile" class="p-2">
+                    <i data-lucide="sun" class="w-5 h-5 text-yellow-400 hidden dark:block"></i>
+                    <i data-lucide="moon" class="w-5 h-5 text-slate-700 block dark:hidden"></i>
+                </button>
+                <button id="menu-btn" class="p-2">
+                    <i data-lucide="menu" class="w-6 h-6 text-slate-700 dark:text-slate-200"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden md:hidden border-b border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+            <div class="flex flex-col p-4 gap-4">
+                <a href="index.html"
+                    class="mobile-link text-left font-medium py-2 px-4 hover:bg-blue-500/10 rounded-lg text-blue-500">Home</a>
+                <a href="articles.html"
+                    class="mobile-link text-left font-medium py-2 px-4 bg-blue-500/10 rounded-lg text-blue-500">Article</a>
+                <a href="education.html"
+                    class="mobile-link text-left font-medium py-2 px-4 hover:bg-blue-500/10 rounded-lg text-blue-500">Education</a>
+                <a href="certifications.html"
+                    class="mobile-link text-left font-medium py-2 px-4 hover:bg-blue-500/10 rounded-lg text-blue-500">Certification</a>
+                <a href="projects.html"
+                    class="mobile-link text-left font-medium py-2 px-4 hover:bg-blue-500/10 rounded-lg text-blue-500">Projects</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10 pt-16">
+
+        <!-- Hero Section -->
+        <section class="py-20 px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 text-blue-500 border border-blue-500/20 mb-6">
+                        <i data-lucide="book-open" class="w-4 h-4"></i>
+                        <span class="text-sm font-medium">Technical Writing</span>
+                    </div>
+                    <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
+                        <span class="gradient-text">Articles & Guides</span>
+                    </h1>
+                    <p class="max-w-2xl mx-auto text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+                        In-depth technical guides on cybersecurity, SIEM deployment, threat detection, and security
+                        monitoring.
+                        Learn from real-world implementations and best practices.
+                    </p>
+                </div>
+
+                <!-- Articles Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Article 1 -->
+                    <article
+                        class="article-card bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl overflow-hidden shadow-lg"
+                        data-aos="fade-up" data-aos-delay="0">
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="p-3 rounded-xl bg-blue-500/10">
+                                    <i data-lucide="shield-check" class="w-6 h-6 text-blue-500"></i>
+                                </div>
+                                <span class="text-xs font-semibold text-blue-500 uppercase tracking-wider">Security
+                                    Guide</span>
+                            </div>
+
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">
+                                Wazuh YARA Integration for Linux Endpoints
+                            </h3>
+
+                            <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                                Complete implementation guide for integrating YARA malware detection rules with Wazuh
+                                SIEM for enhanced threat detection on Linux endpoints.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span
+                                    class="px-2 py-1 text-xs font-medium rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400">Wazuh</span>
+                                <span
+                                    class="px-2 py-1 text-xs font-medium rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400">YARA</span>
+                                <span
+                                    class="px-2 py-1 text-xs font-medium rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400">Linux</span>
+                            </div>
+
+                            <div
+                                class="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-700">
+                                <span class="text-sm text-slate-500 dark:text-slate-400">15 min read</span>
+                                <button onclick="openArticleModal('wazuh-yara')"
+                                    class="flex items-center gap-2 text-blue-500 font-semibold hover:gap-3 transition-all">
+                                    Read Article <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 2 -->
+                    <article
+                        class="article-card bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl overflow-hidden shadow-lg"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="p-3 rounded-xl bg-cyan-500/10">
+                                    <i data-lucide="server" class="w-6 h-6 text-cyan-500"></i>
+                                </div>
+                                <span class="text-xs font-semibold text-cyan-500 uppercase tracking-wider">SIEM
+                                    Deployment</span>
+                            </div>
+
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">
+                                Wazuh SIEM Installation and Deployment Guide
+                            </h3>
+
+                            <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                                Complete step-by-step guide for installing and deploying Wazuh SIEM from scratch. Build
+                                a production-ready security monitoring infrastructure.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span
+                                    class="px-2 py-1 text-xs font-medium rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400">Wazuh</span>
+                                <span
+                                    class="px-2 py-1 text-xs font-medium rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400">Elasticsearch</span>
+                                <span
+                                    class="px-2 py-1 text-xs font-medium rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400">Docker</span>
+                            </div>
+
+                            <div
+                                class="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-700">
+                                <span class="text-sm text-slate-500 dark:text-slate-400">20 min read</span>
+                                <button onclick="openArticleModal('wazuh-siem')"
+                                    class="flex items-center gap-2 text-cyan-500 font-semibold hover:gap-3 transition-all">
+                                    Read Article <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 3 -->
+                    <article
+                        class="article-card bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl overflow-hidden shadow-lg"
+                        data-aos="fade-up" data-aos-delay="200">
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="p-3 rounded-xl bg-purple-500/10">
+                                    <i data-lucide="activity" class="w-6 h-6 text-purple-500"></i>
+                                </div>
+                                <span class="text-xs font-semibold text-purple-500 uppercase tracking-wider">Advanced
+                                    EDR</span>
+                            </div>
+
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">
+                                Sysmon + Wazuh + YARA Integration
+                            </h3>
+
+                            <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                                Advanced endpoint monitoring setup integrating Sysmon logs with Wazuh and custom YARA
+                                rules for comprehensive threat detection.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span
+                                    class="px-2 py-1 text-xs font-medium rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400">Sysmon</span>
+                                <span
+                                    class="px-2 py-1 text-xs font-medium rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400">Wazuh</span>
+                                <span
+                                    class="px-2 py-1 text-xs font-medium rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400">YARA</span>
+                            </div>
+
+                            <div
+                                class="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-700">
+                                <span class="text-sm text-slate-500 dark:text-slate-400">18 min read</span>
+                                <button onclick="openArticleModal('sysmon-wazuh-yara')"
+                                    class="flex items-center gap-2 text-purple-500 font-semibold hover:gap-3 transition-all">
+                                    Read Article <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+
+                <!-- Coming Soon Section -->
+                <div class="mt-16 text-center" data-aos="fade-up">
+                    <div
+                        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+                        <i data-lucide="clock" class="w-5 h-5 text-slate-500"></i>
+                        <span class="text-slate-600 dark:text-slate-400 font-medium">More articles coming soon...</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-20 px-6 bg-gradient-to-r from-blue-600 to-cyan-600">
+            <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                    Want to Learn More?
+                </h2>
+                <p class="text-blue-100 text-lg mb-8">
+                    Follow me on Medium for the latest articles on cybersecurity, threat detection, and security
+                    monitoring.
+                </p>
+                <a href="https://medium.com/@mahimsec" target="_blank"
+                    class="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-white text-blue-600 font-bold hover:bg-blue-50 transition-all shadow-lg">
+                    <i data-lucide="external-link" class="w-5 h-5"></i>
+                    Visit My Medium Profile
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer
+            class="py-8 text-center border-t border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-500">
+            <p class="text-sm">
+                © <span id="year"></span> Md. Mahim Hossain. All rights reserved.
+            </p>
+        </footer>
+
+        <!-- Floating Share Button -->
+        <button id="share-btn" onclick="openShareModal()"
+            class="fixed bottom-8 right-8 z-40 w-14 h-14 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white rounded-full shadow-2xl shadow-blue-500/50 flex items-center justify-center transition-all hover:scale-110 group"
+            title="Share Page">
+            <i data-lucide="share-2" class="w-6 h-6 group-hover:rotate-12 transition-transform"></i>
+        </button>
+
+    </main>
+
+    <!-- QR Code Share Modal -->
+    <div id="share-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-slate-900/90 backdrop-blur-sm transition-opacity duration-300"
+            onclick="closeShareModal()">
+        </div>
+
+        <div
+            class="relative z-10 w-full max-w-md bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 transform transition-all duration-300 overflow-hidden">
+
+            <div
+                class="flex items-center justify-between p-6 border-b border-slate-200 dark:border-slate-700 bg-gradient-to-r from-blue-500/10 to-cyan-500/10">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 rounded-lg bg-blue-500/20 text-blue-500">
+                        <i data-lucide="qr-code" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white">Share This Page</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Scan QR Code to visit</p>
+                    </div>
+                </div>
+
+                <button onclick="closeShareModal()"
+                    class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="p-8 flex flex-col items-center">
+                <div id="qr-code-container"
+                    class="bg-white p-6 rounded-2xl shadow-xl border-2 border-slate-200 dark:border-slate-700 mb-6">
+                    <div id="qrcode" class="flex items-center justify-center"></div>
+                </div>
+
+                <div class="w-full mb-4">
+                    <label class="text-xs font-medium text-slate-500 dark:text-slate-400 mb-2 block">Page URL</label>
+                    <div
+                        class="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 rounded-lg p-3 border border-slate-200 dark:border-slate-700">
+                        <input id="page-url" type="text" readonly
+                            class="flex-1 bg-transparent text-sm text-slate-700 dark:text-slate-300 outline-none font-mono">
+                        <button onclick="copyURL()"
+                            class="p-2 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition-colors text-blue-500"
+                            title="Copy URL">
+                            <i data-lucide="copy" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex gap-3 w-full">
+                    <button onclick="downloadQR()"
+                        class="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-all shadow-lg shadow-blue-500/25">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        Download QR
+                    </button>
+                    <button onclick="shareNative()"
+                        class="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition-all">
+                        <i data-lucide="share" class="w-4 h-4"></i>
+                        Share
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Preview Modal -->
+    <div id="article-modal"
+        class="fixed inset-0 z-50 hidden items-center justify-center p-4 article-modal-overlay bg-black/70">
+        <div
+            class="article-modal-content bg-white dark:bg-slate-900 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-700 shadow-2xl">
+            <!-- Modal Header -->
+            <div
+                class="sticky top-0 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 p-6 flex items-center justify-between z-10 rounded-t-2xl">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 rounded-lg bg-blue-500/10">
+                        <i data-lucide="file-text" class="w-6 h-6 text-blue-500"></i>
+                    </div>
+                    <div>
+                        <h3 id="article-modal-title" class="text-2xl font-bold text-slate-900 dark:text-white"></h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Published on Medium</p>
+                    </div>
+                </div>
+                <button onclick="closeArticleModal()"
+                    class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                    <i data-lucide="x" class="w-6 h-6 text-slate-500"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 space-y-6">
+                <!-- Article Description -->
+                <div>
+                    <h4 class="text-lg font-bold mb-3 text-slate-900 dark:text-white">About This Article</h4>
+                    <p id="article-description" class="text-slate-600 dark:text-slate-400 leading-relaxed"></p>
+                </div>
+
+                <!-- Key Topics -->
+                <div>
+                    <h4 class="text-lg font-bold mb-3 text-slate-900 dark:text-white">Key Topics Covered</h4>
+                    <ul id="article-topics" class="space-y-2"></ul>
+                </div>
+
+                <!-- Technologies -->
+                <div>
+                    <h4 class="text-lg font-bold mb-3 text-slate-900 dark:text-white">Technologies</h4>
+                    <div id="article-technologies" class="flex flex-wrap gap-2"></div>
+                </div>
+
+                <!-- CTA Button -->
+                <div class="pt-4 border-t border-slate-200 dark:border-slate-700">
+                    <a id="article-read-link" href="" target="_blank"
+                        class="w-full flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold transition-all shadow-lg shadow-blue-500/25 text-lg">
+                        <i data-lucide="book-open" class="w-6 h-6"></i>
+                        Read Full Article on Medium
+                        <i data-lucide="external-link" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AOS JavaScript -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Initialize Animations
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+        });
+
+        // Set Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Theme Toggle Logic
+        const toggleBtns = document.querySelectorAll('#theme-toggle, #theme-toggle-mobile');
+        const html = document.documentElement;
+
+        toggleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                html.classList.toggle('dark');
+            });
+        });
+
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Article Data
+        const articleData = {
+            'wazuh-yara': {
+                title: 'Wazuh YARA Integration for Linux Endpoints',
+                description: 'A comprehensive step-by-step guide on integrating YARA malware detection rules with Wazuh SIEM for enhanced threat detection on Linux endpoints. This guide covers installation, configuration, custom rule creation, and real-time monitoring setup.',
+                url: 'https://medium.com/@mahimsec/wazuh-yara-integration-for-linux-endpoints-complete-implementation-guide-02016f98740a',
+                topics: [
+                    'Installing and configuring YARA on Linux systems',
+                    'Integrating YARA with Wazuh agents',
+                    'Creating custom YARA rules for malware detection',
+                    'Setting up automated scanning workflows',
+                    'Real-time alerting and incident response',
+                    'Best practices for rule management'
+                ],
+                technologies: ['Wazuh', 'YARA', 'Linux', 'Python', 'Bash', 'SIEM']
+            },
+            'wazuh-siem': {
+                title: 'Wazuh SIEM Installation and Deployment Guide',
+                description: 'Complete guide for deploying Wazuh SIEM from scratch, covering server installation, agent deployment, and essential security monitoring configurations. Learn how to set up a production-ready security monitoring infrastructure for your organization.',
+                url: 'https://medium.com/@mahimsec/wazuh-siem-installation-and-deployment-guide-for-linux-endpoints-2025-complete-step-by-step-b0d2a2c5f3a5',
+                topics: [
+                    'Wazuh server installation and initial setup',
+                    'Deploying Wazuh agents across multiple endpoints',
+                    'Configuring File Integrity Monitoring (FIM)',
+                    'Setting up log collection and analysis',
+                    'Creating custom detection rules',
+                    'Dashboard configuration and visualization',
+                    'Performance tuning and optimization'
+                ],
+                technologies: ['Wazuh', 'Elasticsearch', 'Kibana', 'Docker', 'Linux', 'Security Monitoring']
+            },
+            'sysmon-wazuh-yara': {
+                title: 'Sysmon + Wazuh + YARA Integration',
+                description: 'Advanced endpoint detection and response (EDR) setup combining Sysmon for detailed Windows event logging, Wazuh for centralized monitoring, and YARA for malware detection. Build a powerful security monitoring solution with comprehensive visibility.',
+                url: 'https://medium.com/@mahimsec/sysmon-wazuh-yara-integration-advanced-endpoint-monitoring-setup-complete-guide-2025-9a8b7c6d5e4f',
+                topics: [
+                    'Deploying Sysmon with optimized configuration',
+                    'Forwarding Sysmon logs to Wazuh',
+                    'Integrating YARA scanning with Wazuh',
+                    'Creating correlation rules for advanced threats',
+                    'Process and network monitoring',
+                    'Automated threat detection and response',
+                    'Threat hunting with combined telemetry'
+                ],
+                technologies: ['Sysmon', 'Wazuh', 'YARA', 'PowerShell', 'Windows', 'EDR', 'Threat Hunting']
+            }
+        };
+
+        // Article Modal Functions
+        function openArticleModal(articleKey) {
+            const article = articleData[articleKey];
+            if (!article) return;
+
+            const modal = document.getElementById('article-modal');
+
+            // Update modal content
+            document.getElementById('article-modal-title').textContent = article.title;
+            document.getElementById('article-description').textContent = article.description;
+            document.getElementById('article-read-link').href = article.url;
+
+            // Update topics
+            const topicsContainer = document.getElementById('article-topics');
+            topicsContainer.innerHTML = article.topics.map(topic =>
+                `<li class="flex items-start gap-3 text-slate-600 dark:text-slate-400">
+                    <div class="mt-1.5 w-2 h-2 rounded-full bg-blue-500 shrink-0"></div>
+                    <span>${topic}</span>
+                </li>`
+            ).join('');
+
+            // Update technologies
+            const techContainer = document.getElementById('article-technologies');
+            techContainer.innerHTML = article.technologies.map(tech =>
+                `<span class="px-3 py-1.5 text-sm font-medium rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">${tech}</span>`
+            ).join('');
+
+            // Show modal
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+
+            // Reinitialize icons
+            lucide.createIcons();
+        }
+
+        function closeArticleModal() {
+            const modal = document.getElementById('article-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close article modal when clicking outside
+        document.getElementById('article-modal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeArticleModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeArticleModal();
+                const shareModal = document.getElementById('share-modal');
+                if (shareModal && !shareModal.classList.contains('hidden')) {
+                    closeShareModal();
+                }
+            }
+        });
+
+        // QR Code Share Functions
+        let qrCodeInstance = null;
+
+        function openShareModal() {
+            const modal = document.getElementById('share-modal');
+            const currentURL = window.location.href;
+
+            document.getElementById('page-url').value = currentURL;
+            const qrContainer = document.getElementById('qrcode');
+            qrContainer.innerHTML = '';
+
+            qrCodeInstance = new QRCode(qrContainer, {
+                text: currentURL,
+                width: 200,
+                height: 200,
+                colorDark: '#1e293b',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+
+            setTimeout(() => {
+                lucide.createIcons();
+            }, 100);
+        }
+
+        function closeShareModal() {
+            const modal = document.getElementById('share-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        function copyURL() {
+            const urlInput = document.getElementById('page-url');
+            urlInput.select();
+            urlInput.setSelectionRange(0, 99999);
+
+            navigator.clipboard.writeText(urlInput.value).then(() => {
+                const button = event.target.closest('button');
+                const icon = button.querySelector('i');
+
+                icon.setAttribute('data-lucide', 'check');
+                lucide.createIcons();
+
+                setTimeout(() => {
+                    icon.setAttribute('data-lucide', 'copy');
+                    lucide.createIcons();
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Failed to copy URL');
+            });
+        }
+
+        function downloadQR() {
+            const qrContainer = document.getElementById('qrcode');
+            const canvas = qrContainer.querySelector('canvas');
+
+            if (canvas) {
+                const url = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.download = 'qr-code-share.png';
+                link.href = url;
+                link.click();
+            } else {
+                alert('QR Code not generated yet');
+            }
+        }
+
+        function shareNative() {
+            const currentURL = window.location.href;
+            const pageTitle = document.title;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: pageTitle,
+                    text: 'Check out this page!',
+                    url: currentURL
+                }).then(() => {
+                    console.log('Shared successfully');
+                }).catch((error) => {
+                    console.log('Error sharing:', error);
+                    copyURL();
+                });
+            } else {
+                copyURL();
+            }
+        }
+    </script>
+</body>
+
+</html>

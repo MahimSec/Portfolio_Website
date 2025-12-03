@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education - Md. Mahim Hossain</title>
+    <meta name="description"
+        content="Academic background, degrees, courses, and projects of Md. Mahim Hossain - SOC Analyst and Security Researcher.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config for Custom Colors/Fonts -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            850: '#1e293b',
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- AOS Animation Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- QRCode.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #60a5fa, #22d3ee, #2563eb);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-200 transition-colors duration-300 min-h-screen relative">
+
+    <!-- Background Effects (HTB Academy Style) -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <!-- Gradient Background -->
+        <div
+            class="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50 dark:from-slate-950 dark:via-blue-950/20 dark:to-slate-950">
+        </div>
+
+        <!-- Geometric Shapes -->
+        <div class="absolute top-20 right-20 w-96 h-96 bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 left-20 w-80 h-80 bg-cyan-500/5 dark:bg-cyan-500/10 rounded-full blur-3xl"></div>
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-400/3 dark:bg-blue-600/5 rounded-full blur-3xl">
+        </div>
+
+        <!-- Subtle Grid Pattern -->
+        <div class="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"
+            style="background-image: linear-gradient(#3b82f6 1px, transparent 1px), linear-gradient(90deg, #3b82f6 1px, transparent 1px); background-size: 50px 50px;">
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav
+        class="fixed top-0 w-full z-50 backdrop-blur-md border-b border-gray-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="font-bold text-xl tracking-tighter flex items-center gap-2">
+                <i data-lucide="shield" class="text-blue-500 w-6 h-6"></i>
+                <span class="dark:text-white text-slate-900">MAHIM<span class="text-blue-500">SEC</span></span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html"
+                    class="text-sm font-medium hover:text-blue-500 transition-colors dark:text-slate-400 text-slate-600">Home</a>
+                <a href="articles.html"
+                    class="text-sm font-medium hover:text-blue-500 transition-colors dark:text-slate-400 text-slate-600">Article</a>
+                <a href="education.html" class="text-sm font-medium text-blue-500">Education</a>
+                <a href="certifications.html"
+                    class="text-sm font-medium hover:text-blue-500 transition-colors dark:text-slate-400 text-slate-600">Certification</a>
+                <a href="projects.html"
+                    class="text-sm font-medium hover:text-blue-500 transition-colors dark:text-slate-400 text-slate-600">Projects</a>
+
+                <!-- Dark Mode Toggle -->
+                <button id="theme-toggle"
+                    class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800/50 transition-colors">
+                    <i data-lucide="sun" class="w-5 h-5 text-yellow-400 hidden dark:block"></i>
+                    <i data-lucide="moon" class="w-5 h-5 text-slate-700 block dark:hidden"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <div class="md:hidden flex items-center gap-4">
+                <button id="theme-toggle-mobile" class="p-2">
+                    <i data-lucide="sun" class="w-5 h-5 text-yellow-400 hidden dark:block"></i>
+                    <i data-lucide="moon" class="w-5 h-5 text-slate-700 block dark:hidden"></i>
+                </button>
+                <button id="menu-btn" class="p-2">
+                    <i data-lucide="menu" class="w-6 h-6 text-slate-700 dark:text-slate-200"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden md:hidden border-b border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+            <div class="flex flex-col p-4 gap-4">
+                <a href="index.html"
+                    class="mobile-link text-left font-medium py-2 px-4 hover:bg-blue-500/10 rounded-lg text-blue-500">Home</a>
+                <a href="articles.html"
+                    class="mobile-link text-left font-medium py-2 px-4 hover:bg-blue-500/10 rounded-lg text-blue-500">Article</a>
+                <a href="education.html"
+                    class="mobile-link text-left font-medium py-2 px-4 bg-blue-500/10 rounded-lg text-blue-500">Education</a>
+                <a href="certifications.html"
+                    class="mobile-link text-left font-medium py-2 px-4 hover:bg-blue-500/10 rounded-lg text-blue-500">Certification</a>
+                <a href="projects.html"
+                    class="mobile-link text-left font-medium py-2 px-4 hover:bg-blue-500/10 rounded-lg text-blue-500">Projects</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10 pt-16">
+
+        <!-- Education Section -->
+        <section id="education" class="py-20 px-6 bg-slate-100/50 dark:bg-slate-900/50">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-16 text-center" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold gradient-text inline-block">Education</h2>
+                    <div class="h-1 w-20 bg-blue-500 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <!-- Degree Information -->
+                <div class="mb-12" data-aos="fade-up">
+                    <div
+                        class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-8 rounded-2xl shadow-lg">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div class="p-3 rounded-xl bg-blue-500/10">
+                                <i data-lucide="graduation-cap" class="w-8 h-8 text-blue-500"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Bachelor of Science
+                                    in Computer Science & Engineering</h3>
+                                <p class="text-lg text-blue-500 dark:text-blue-400 font-semibold mb-2">Green University
+                                    of Bangladesh</p>
+                                <div class="flex flex-wrap gap-3 items-center">
+                                    <span
+                                        class="px-3 py-1 text-sm font-medium rounded-full bg-green-500/10 text-green-600 dark:text-green-400 border border-green-500/20">
+                                        <i data-lucide="calendar" class="w-3 h-3 inline mr-1"></i>Feb 2022 – Jan 2026
+                                    </span>
+                                    <span
+                                        class="px-3 py-1 text-sm font-medium rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
+                                        <i data-lucide="activity" class="w-3 h-3 inline mr-1"></i>Currently Running
+                                    </span>
+                                </div>
+                                <p class="text-slate-600 dark:text-slate-400 mt-3">Focused on core technical subjects
+                                    that support system development, networking, and engineering fundamentals.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Major Academic Subjects -->
+                <div class="mb-12" data-aos="fade-up">
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                        <i data-lucide="book-open" class="w-6 h-6 text-blue-500"></i>
+                        Major Academic Subjects
+                    </h3>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Networking & Systems -->
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-6 rounded-xl">
+                            <h4 class="font-bold text-lg mb-4 flex items-center gap-2 text-cyan-500">
+                                <i data-lucide="network" class="w-5 h-5"></i>
+                                Networking & Systems
+                            </h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start gap-2 text-slate-600 dark:text-slate-400">
+                                    <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan-500 shrink-0"></div>
+                                    <span>Computer Networking</span>
+                                </li>
+                                <li class="flex items-start gap-2 text-slate-600 dark:text-slate-400">
+                                    <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan-500 shrink-0"></div>
+                                    <span>Operating Systems</span>
+                                </li>
+                                <li class="flex items-start gap-2 text-slate-600 dark:text-slate-400">
+                                    <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan-500 shrink-0"></div>
+                                    <span>Information Systems Design</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Programming & Development -->
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-6 rounded-xl">
+                            <h4 class="font-bold text-lg mb-4 flex items-center gap-2 text-blue-500">
+                                <i data-lucide="code" class="w-5 h-5"></i>
+                                Programming & Development
+                            </h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start gap-2 text-slate-600 dark:text-slate-400">
+                                    <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0"></div>
+                                    <span>Java Programming</span>
+                                </li>
+                                <li class="flex items-start gap-2 text-slate-600 dark:text-slate-400">
+                                    <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0"></div>
+                                    <span>Web Engineering</span>
+                                </li>
+                                <li class="flex items-start gap-2 text-slate-600 dark:text-slate-400">
+                                    <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0"></div>
+                                    <span>Database Systems</span>
+                                </li>
+                                <li class="flex items-start gap-2 text-slate-600 dark:text-slate-400">
+                                    <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0"></div>
+                                    <span>Data Structures & Algorithms</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Hardware & Architecture -->
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-6 rounded-xl">
+                            <h4 class="font-bold text-lg mb-4 flex items-center gap-2 text-purple-500">
+                                <i data-lucide="cpu" class="w-5 h-5"></i>
+                                Hardware & Architecture
+                            </h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start gap-2 text-slate-600 dark:text-slate-400">
+                                    <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0"></div>
+                                    <span>Microprocessors & Microcontrollers</span>
+                                </li>
+                                <li class="flex items-start gap-2 text-slate-600 dark:text-slate-400">
+                                    <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0"></div>
+                                    <span>8086 Assembly Language Programming</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Others -->
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-6 rounded-xl">
+                            <h4 class="font-bold text-lg mb-4 flex items-center gap-2 text-green-500">
+                                <i data-lucide="briefcase" class="w-5 h-5"></i>
+                                Business & Ethics
+                            </h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start gap-2 text-slate-600 dark:text-slate-400">
+                                    <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-green-500 shrink-0"></div>
+                                    <span>Financial & Managerial Accounting</span>
+                                </li>
+                                <li class="flex items-start gap-2 text-slate-600 dark:text-slate-400">
+                                    <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-green-500 shrink-0"></div>
+                                    <span>Professional Ethics & Environmental Protection</span>
+                                </li>
+                                <li class="flex items-start gap-2 text-slate-600 dark:text-slate-400">
+                                    <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-green-500 shrink-0"></div>
+                                    <span>Engineering Economics</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Labs -->
+                <div class="mb-12" data-aos="fade-up">
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                        <i data-lucide="flask-conical" class="w-6 h-6 text-blue-500"></i>
+                        Major Laboratory Work
+                    </h3>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-4 rounded-xl flex items-center gap-3">
+                            <div class="p-2 rounded-lg bg-cyan-500/10">
+                                <i data-lucide="network" class="w-5 h-5 text-cyan-500"></i>
+                            </div>
+                            <span class="font-medium text-slate-700 dark:text-slate-300">Computer Networking Lab</span>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-4 rounded-xl flex items-center gap-3">
+                            <div class="p-2 rounded-lg bg-purple-500/10">
+                                <i data-lucide="cpu" class="w-5 h-5 text-purple-500"></i>
+                            </div>
+                            <span class="font-medium text-slate-700 dark:text-slate-300">Microprocessor &
+                                Microcontroller Lab (8086)</span>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-4 rounded-xl flex items-center gap-3">
+                            <div class="p-2 rounded-lg bg-blue-500/10">
+                                <i data-lucide="globe" class="w-5 h-5 text-blue-500"></i>
+                            </div>
+                            <span class="font-medium text-slate-700 dark:text-slate-300">Web Engineering Lab</span>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-4 rounded-xl flex items-center gap-3">
+                            <div class="p-2 rounded-lg bg-green-500/10">
+                                <i data-lucide="code" class="w-5 h-5 text-green-500"></i>
+                            </div>
+                            <span class="font-medium text-slate-700 dark:text-slate-300">Java Socket Programming
+                                Lab</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thesis -->
+                <div class="mb-12" data-aos="fade-up">
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                        <i data-lucide="file-text" class="w-6 h-6 text-blue-500"></i>
+                        Thesis / Research
+                    </h3>
+
+                    <div
+                        class="bg-gradient-to-r from-purple-500/10 to-blue-500/10 border border-purple-500/20 dark:border-purple-500/30 p-6 rounded-xl">
+                        <h4 class="text-xl font-bold text-purple-600 dark:text-purple-400 mb-3">NeuroCrypt – BCI Secure
+                            Data Sharing</h4>
+                        <p class="text-slate-600 dark:text-slate-400">A novel research initiative focusing on securing
+                            Brain-Computer Interface (BCI) data transmission using advanced cryptographic protocols to
+                            ensure privacy and integrity in neural data sharing.</p>
+                    </div>
+                </div>
+
+                <!-- Academic Projects -->
+                <div class="mb-12" data-aos="fade-up">
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                        <i data-lucide="folder" class="w-6 h-6 text-blue-500"></i>
+                        Academic Projects
+                    </h3>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Project 1 -->
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-5 rounded-xl hover:border-blue-500/50 transition-all">
+                            <div class="flex items-start gap-3 mb-3">
+                                <div class="p-2 rounded-lg bg-blue-500/10">
+                                    <i data-lucide="network" class="w-4 h-4 text-blue-500"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Basic Network Sniffer</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">A simple network sniffer that captures
+                                basic packets to understand how data moves in a network.</p>
+                        </div>
+
+                        <!-- Project 2 -->
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-5 rounded-xl hover:border-blue-500/50 transition-all">
+                            <div class="flex items-start gap-3 mb-3">
+                                <div class="p-2 rounded-lg bg-cyan-500/10">
+                                    <i data-lucide="radio" class="w-4 h-4 text-cyan-500"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Basic Data Communication</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Live code implementation showing how
+                                data is sent and received between systems.</p>
+                        </div>
+
+                        <!-- Project 3 -->
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-5 rounded-xl hover:border-blue-500/50 transition-all">
+                            <div class="flex items-start gap-3 mb-3">
+                                <div class="p-2 rounded-lg bg-purple-500/10">
+                                    <i data-lucide="lock" class="w-4 h-4 text-purple-500"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Encryption & Decryption (8086)</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Implemented basic cryptographic
+                                algorithm in 8086 assembly language using EMU8086.</p>
+                        </div>
+
+                        <!-- Project 4 -->
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-5 rounded-xl hover:border-blue-500/50 transition-all">
+                            <div class="flex items-start gap-3 mb-3">
+                                <div class="p-2 rounded-lg bg-pink-500/10">
+                                    <i data-lucide="smile" class="w-4 h-4 text-pink-500"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Emotion Detection System</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Real-time facial emotion recognition
+                                using machine learning and computer vision.</p>
+                        </div>
+
+                        <!-- Project 5 -->
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-5 rounded-xl hover:border-blue-500/50 transition-all">
+                            <div class="flex items-start gap-3 mb-3">
+                                <div class="p-2 rounded-lg bg-blue-500/10">
+                                    <i data-lucide="users" class="w-4 h-4 text-blue-500"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Student Admission Management</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Full-stack web project using HTML,
+                                CSS, Bootstrap, PHP, and SQL for student admission process.</p>
+                        </div>
+
+                        <!-- Project 6 -->
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-5 rounded-xl hover:border-blue-500/50 transition-all">
+                            <div class="flex items-start gap-3 mb-3">
+                                <div class="p-2 rounded-lg bg-green-500/10">
+                                    <i data-lucide="dollar-sign" class="w-4 h-4 text-green-500"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Cash Flow Minimizer</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">System to calculate and manage cash
+                                flow for learning logic building and math-based problem solving.</p>
+                        </div>
+
+                        <!-- Project 7 -->
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-5 rounded-xl hover:border-blue-500/50 transition-all">
+                            <div class="flex items-start gap-3 mb-3">
+                                <div class="p-2 rounded-lg bg-orange-500/10">
+                                    <i data-lucide="terminal" class="w-4 h-4 text-orange-500"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Transaction System (Shell Script)
+                                </h4>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Linux shell-based project for simple
+                                transactions to improve scripting and automation skills.</p>
+                        </div>
+
+                        <!-- Project 8 -->
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-5 rounded-xl hover:border-blue-500/50 transition-all">
+                            <div class="flex items-start gap-3 mb-3">
+                                <div class="p-2 rounded-lg bg-red-500/10">
+                                    <i data-lucide="user-check" class="w-4 h-4 text-red-500"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Student Management System (Java)
+                                </h4>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Java-based system with Object-Oriented
+                                Design for managing student records and logic.</p>
+                        </div>
+
+                        <!-- Project 9 -->
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-5 rounded-xl hover:border-blue-500/50 transition-all">
+                            <div class="flex items-start gap-3 mb-3">
+                                <div class="p-2 rounded-lg bg-yellow-500/10">
+                                    <i data-lucide="utensils" class="w-4 h-4 text-yellow-500"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Restaurant Management System</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Built using data structure concepts to
+                                manage menu, orders, and internal system flow.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Soft Skills -->
+                <div data-aos="fade-up">
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                        <i data-lucide="sparkles" class="w-6 h-6 text-blue-500"></i>
+                        Soft Skills
+                    </h3>
+
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <!-- Communication -->
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-5 rounded-xl">
+                            <div class="flex items-center gap-2 mb-3">
+                                <i data-lucide="message-circle" class="w-5 h-5 text-blue-500"></i>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Communication</h4>
+                            </div>
+                            <ul class="space-y-1 text-sm text-slate-600 dark:text-slate-400">
+                                <li>• Clear technical explanations</li>
+                                <li>• Confident presentations</li>
+                                <li>• Active listening</li>
+                            </ul>
+                        </div>
+
+                        <!-- Teamwork -->
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-5 rounded-xl">
+                            <div class="flex items-center gap-2 mb-3">
+                                <i data-lucide="users" class="w-5 h-5 text-green-500"></i>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Teamwork</h4>
+                            </div>
+                            <ul class="space-y-1 text-sm text-slate-600 dark:text-slate-400">
+                                <li>• Collaborative mindset</li>
+                                <li>• Supportive team member</li>
+                                <li>• Shared responsibility</li>
+                            </ul>
+                        </div>
+
+                        <!-- Problem Solving -->
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-5 rounded-xl">
+                            <div class="flex items-center gap-2 mb-3">
+                                <i data-lucide="lightbulb" class="w-5 h-5 text-yellow-500"></i>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Problem Solving</h4>
+                            </div>
+                            <ul class="space-y-1 text-sm text-slate-600 dark:text-slate-400">
+                                <li>• Logical thinking</li>
+                                <li>• Analytical mindset</li>
+                                <li>• Step-by-step investigation</li>
+                            </ul>
+                        </div>
+
+                        <!-- Time Management -->
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-5 rounded-xl">
+                            <div class="flex items-center gap-2 mb-3">
+                                <i data-lucide="clock" class="w-5 h-5 text-purple-500"></i>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Time Management</h4>
+                            </div>
+                            <ul class="space-y-1 text-sm text-slate-600 dark:text-slate-400">
+                                <li>• Handles multiple projects</li>
+                                <li>• Works under pressure</li>
+                                <li>• Meets deadlines</li>
+                            </ul>
+                        </div>
+
+                        <!-- Self-Learning -->
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-5 rounded-xl">
+                            <div class="flex items-center gap-2 mb-3">
+                                <i data-lucide="trending-up" class="w-5 h-5 text-cyan-500"></i>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Self-Learning</h4>
+                            </div>
+                            <ul class="space-y-1 text-sm text-slate-600 dark:text-slate-400">
+                                <li>• Quick learner</li>
+                                <li>• Growth mindset</li>
+                                <li>• Continuous improvement</li>
+                            </ul>
+                        </div>
+
+                        <!-- Creativity -->
+                        <div
+                            class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-5 rounded-xl">
+                            <div class="flex items-center gap-2 mb-3">
+                                <i data-lucide="zap" class="w-5 h-5 text-orange-500"></i>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Innovation</h4>
+                            </div>
+                            <ul class="space-y-1 text-sm text-slate-600 dark:text-slate-400">
+                                <li>• Creative problem solving</li>
+                                <li>• Unique project ideas</li>
+                                <li>• Beyond basic methods</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer
+            class="py-8 text-center border-t border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-500">
+            <p class="text-sm">
+                © <span id="year"></span> Md. Mahim Hossain. All rights reserved.
+            </p>
+        </footer>
+
+        <!-- Floating Action Buttons -->
+        <div class="fixed bottom-8 right-8 z-40 flex flex-col gap-4">
+            <!-- Share Button -->
+            <button onclick="openShareModal()"
+                class="w-14 h-14 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white rounded-full shadow-2xl shadow-blue-500/50 flex items-center justify-center transition-all hover:scale-110 group"
+                title="Share Page">
+                <i data-lucide="share-2" class="w-6 h-6 group-hover:rotate-12 transition-transform"></i>
+            </button>
+
+            <!-- WhatsApp Button -->
+            <a href="https://wa.me/8801866928533" target="_blank"
+                class="w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-2xl shadow-green-500/50 flex items-center justify-center transition-all hover:scale-110 group"
+                title="Chat on WhatsApp">
+                <svg class="w-7 h-7 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+            </a>
+        </div>
+    </main>
+
+    <!-- QR Code Share Modal -->
+    <div id="share-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-slate-900/90 backdrop-blur-sm transition-opacity duration-300"
+            onclick="closeShareModal()">
+        </div>
+
+        <div
+            class="relative z-10 w-full max-w-md bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 transform transition-all duration-300 overflow-hidden">
+
+            <div
+                class="flex items-center justify-between p-6 border-b border-slate-200 dark:border-slate-700 bg-gradient-to-r from-blue-500/10 to-cyan-500/10">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 rounded-lg bg-blue-500/20 text-blue-500">
+                        <i data-lucide="qr-code" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white">Share This Page</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Scan QR Code to visit</p>
+                    </div>
+                </div>
+
+                <button onclick="closeShareModal()"
+                    class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="p-8 flex flex-col items-center">
+                <div id="qr-code-container"
+                    class="bg-white p-6 rounded-2xl shadow-xl border-2 border-slate-200 dark:border-slate-700 mb-6">
+                    <div id="qrcode" class="flex items-center justify-center"></div>
+                </div>
+
+                <div class="w-full mb-4">
+                    <label class="text-xs font-medium text-slate-500 dark:text-slate-400 mb-2 block">Page URL</label>
+                    <div
+                        class="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 rounded-lg p-3 border border-slate-200 dark:border-slate-700">
+                        <input id="page-url" type="text" readonly
+                            class="flex-1 bg-transparent text-sm text-slate-700 dark:text-slate-300 outline-none font-mono">
+                        <button onclick="copyURL()"
+                            class="p-2 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition-colors text-blue-500"
+                            title="Copy URL">
+                            <i data-lucide="copy" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex gap-3 w-full">
+                    <button onclick="downloadQR()"
+                        class="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-all shadow-lg shadow-blue-500/25">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        Download QR
+                    </button>
+                    <button onclick="shareNative()"
+                        class="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition-all">
+                        <i data-lucide="share" class="w-4 h-4"></i>
+                        Share
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AOS JavaScript -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Initialize Animations
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+        });
+
+        // Set Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Theme Toggle Logic
+        const toggleBtns = document.querySelectorAll('#theme-toggle, #theme-toggle-mobile');
+        const html = document.documentElement;
+
+        toggleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                html.classList.toggle('dark');
+            });
+        });
+
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking links
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // QR Code Share Functions
+        let qrCodeInstance = null;
+
+        function openShareModal() {
+            const modal = document.getElementById('share-modal');
+            const currentURL = window.location.href;
+
+            document.getElementById('page-url').value = currentURL;
+            const qrContainer = document.getElementById('qrcode');
+            qrContainer.innerHTML = '';
+
+            qrCodeInstance = new QRCode(qrContainer, {
+                text: currentURL,
+                width: 200,
+                height: 200,
+                colorDark: '#1e293b',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+
+            setTimeout(() => {
+                lucide.createIcons();
+            }, 100);
+        }
+
+        function closeShareModal() {
+            const modal = document.getElementById('share-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        function copyURL() {
+            const urlInput = document.getElementById('page-url');
+            urlInput.select();
+            urlInput.setSelectionRange(0, 99999);
+
+            navigator.clipboard.writeText(urlInput.value).then(() => {
+                const button = event.target.closest('button');
+                const icon = button.querySelector('i');
+
+                icon.setAttribute('data-lucide', 'check');
+                lucide.createIcons();
+
+                setTimeout(() => {
+                    icon.setAttribute('data-lucide', 'copy');
+                    lucide.createIcons();
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Failed to copy URL');
+            });
+        }
+
+        function downloadQR() {
+            const qrContainer = document.getElementById('qrcode');
+            const canvas = qrContainer.querySelector('canvas');
+
+            if (canvas) {
+                const url = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.download = 'qr-code-share.png';
+                link.href = url;
+                link.click();
+            } else {
+                alert('QR Code not generated yet');
+            }
+        }
+
+        function shareNative() {
+            const currentURL = window.location.href;
+            const pageTitle = document.title;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: pageTitle,
+                    text: 'Check out this page!',
+                    url: currentURL
+                }).then(() => {
+                    console.log('Shared successfully');
+                }).catch((error) => {
+                    console.log('Error sharing:', error);
+                    copyURL();
+                });
+            } else {
+                copyURL();
+            }
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const shareModal = document.getElementById('share-modal');
+                if (shareModal && !shareModal.classList.contains('hidden')) {
+                    closeShareModal();
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
