@@ -657,10 +657,12 @@
         toggleBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 html.classList.toggle('dark');
-                if (html.classList.contains('dark')) {
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    localStorage.setItem('theme', 'light');
+                const isDark = html.classList.contains('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+                // Reinitialize icons to ensure they update correctly across all browsers
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
                 }
             });
         });
