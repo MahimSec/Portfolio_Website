@@ -44,9 +44,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
     <!-- PDF.js for Universal Resume Preview -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <script>
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
     </script>
 
     <!-- Theme Initialization Script -->
@@ -3189,43 +3189,76 @@ END:VCARD`;
         async function renderPDF(url) {
             const loading = document.getElementById('cv-loading');
             const container = document.getElementById('pdf-canvas-container');
-            loading.style.display = 'flex';
-            container.innerHTML = ''; // Clear previous
+            if (loading) {
+                loading.style.display = 'flex';
+                loading.innerHTML = `
+                    <div class="flex flex-col items-center gap-3">
+                        <div class="w-8 h-8 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin"></div>
+                        <p class="text-xs text-slate-500 font-bold tracking-widest uppercase">Loading Resume...</p>
+                    </div>
+                `;
+            }
+            if (container) container.innerHTML = '';
 
             try {
-                const loadingTask = pdfjsLib.getDocument(url);
+                // Fetch the PDF using a more robust method
+                const loadingTask = pdfjsLib.getDocument({
+                    url: url,
+                    isEvalSupported: false
+                });
+
                 pdfDoc = await loadingTask.promise;
 
                 // Render all pages
                 for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
                     const page = await pdfDoc.getPage(pageNum);
 
-                    // Set scale for mobile/desktop
-                    const viewport = page.getViewport({ scale: window.innerWidth < 768 ? 1.0 : 1.5 });
+                    // Set scale - fixed scale for better quality
+                    const scale = window.innerWidth < 768 ? 1.0 : 1.5;
+                    const viewport = page.getViewport({ scale: scale });
+
                     const canvas = document.createElement('canvas');
                     const context = canvas.getContext('2d');
                     canvas.height = viewport.height;
                     canvas.width = viewport.width;
-                    canvas.className = "shadow-lg rounded-sm max-w-full h-auto mb-4 bg-white";
+                    canvas.className = "shadow-md rounded-sm max-w-full h-auto mb-4 bg-white mx-auto";
 
                     const renderContext = {
                         canvasContext: context,
-                        viewport: viewport
+                        viewport: viewport,
+                        enableWebGL: true
                     };
 
-                    container.appendChild(canvas);
+                    if (container) container.appendChild(canvas);
                     await page.render(renderContext).promise;
                 }
 
-                loading.style.display = 'none';
+                if (loading) loading.style.display = 'none';
             } catch (error) {
-                console.error('Error rendering PDF:', error);
-                loading.innerHTML = `
-                    <div class="p-6 text-center">
-                        <p class="text-red-500 font-bold mb-4">Error loading resume</p>
-                        <a href="${url}" download class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm">Download Instead</a>
-                    </div>
-                `;
+                console.error('PDF.js rendering failed, using fallback:', error);
+                if (loading) {
+                    loading.innerHTML = `
+                        <div class="p-8 text-center bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700">
+                             <div class="flex justify-center mb-4">
+                                <div class="p-3 bg-red-100 dark:bg-red-900/30 rounded-full">
+                                    <i data-lucide="alert-circle" class="w-8 h-8 text-red-600"></i>
+                                </div>
+                             </div>
+                            <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Notice</h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mb-6">Your browser might be preventing the preview. You can view it directly or download it.</p>
+                            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                                <a href="${url}" target="_blank" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-bold transition-all shadow-md flex items-center justify-center gap-2">
+                                     <i data-lucide="external-link" class="w-4 h-4"></i> View Resume
+                                </a>
+                                <a href="${url}" download class="px-6 py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white rounded-xl text-sm font-bold transition-all border border-slate-200 dark:border-slate-700 flex items-center justify-center gap-2">
+                                     <i data-lucide="download" class="w-4 h-4"></i> Download
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                    // Re-initialize icons for the error message
+                    if (typeof lucide !== 'undefined') lucide.createIcons();
+                }
             }
         }
 
@@ -3236,7 +3269,7 @@ END:VCARD`;
             modal.classList.add('flex');
 
             // Start rendering the PDF
-            renderPDF('assets/Update_Resume_v2%20(1).pdf');
+            renderPDF('assets/resume.pdf');
 
             // Wait a frame for the display:flex to apply
             requestAnimationFrame(() => {
