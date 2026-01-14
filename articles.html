@@ -55,6 +55,10 @@
         /* Custom Styles */
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         /* Hide scrollbar for clean look */
@@ -1282,6 +1286,17 @@
                 }
             }
         }
+
+        // Disable right-click and copy shortcuts
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('keydown', event => {
+            if (event.ctrlKey && (event.key === 'c' || event.key === 'u' || event.key === 'i' || event.key === 'j' || event.key === 's')) {
+                event.preventDefault();
+            }
+            if (event.key === 'F12') {
+                event.preventDefault();
+            }
+        });
     </script>
 </body>
 
