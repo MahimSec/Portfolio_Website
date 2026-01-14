@@ -1917,7 +1917,7 @@
         </div>
 
         <!-- CV Modal (Resume Preview) -->
-        <div id="cv-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-2 md:p-6 lg:p-10">
+        <div id="cv-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
             <!-- Backdrop -->
             <div class="absolute inset-0 bg-slate-900/60 dark:bg-[#020617]/80 backdrop-blur-md transition-opacity duration-300"
                 onclick="closeCVModal()">
@@ -1925,77 +1925,54 @@
 
             <!-- Modal Content -->
             <div id="cv-modal-content"
-                class="relative z-10 w-full max-w-6xl h-full md:h-[95vh] bg-white dark:bg-slate-900 md:rounded-3xl border border-slate-200 dark:border-white/10 flex flex-col overflow-hidden shadow-2xl transition-all duration-300">
+                class="relative z-10 w-full max-w-6xl h-[95vh] bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 flex flex-col overflow-hidden shadow-2xl transition-all duration-300">
 
                 <!-- Header -->
                 <div
-                    class="flex items-center justify-between p-6 md:p-8 border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 shrink-0">
-                    <div class="flex items-center gap-4">
-                        <div class="p-3 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-500">
-                            <i data-lucide="file-text" class="w-6 h-6"></i>
+                    class="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 shrink-0">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-500">
+                            <i data-lucide="file-text" class="w-5 h-5"></i>
                         </div>
                         <div>
-                            <h3
-                                class="font-extrabold text-xl md:text-2xl text-slate-900 dark:text-white tracking-tight">
-                                Resume Preview</h3>
+                            <h3 class="font-bold text-slate-900 dark:text-white">Resume Preview</h3>
                             <p
-                                class="text-[10px] md:text-xs text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest">
-                                Md. Mahim Hossain • PDF</p>
+                                class="text-[10px] md:text-xs text-slate-600 dark:text-slate-300 uppercase tracking-widest font-semibold">
+                                Professional Portfolio & CV</p>
                         </div>
                     </div>
 
-                    <div class="flex items-center gap-3">
-                        <a href="assets/Update_Resume_v2 (1).pdf" download
-                            class="hidden md:flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl text-sm font-bold transition-all hover:scale-105 active:scale-95 shadow-lg shadow-blue-500/20">
+                    <div class="flex items-center gap-2">
+                        <a href="assets/Update_Resume_v2%20(1).pdf" download
+                            class="hidden md:flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-bold transition-all shadow-md">
                             <i data-lucide="download" class="w-4 h-4"></i>
                             Download
                         </a>
                         <button onclick="closeCVModal()"
-                            class="p-3 rounded-2xl hover:bg-red-50 dark:hover:bg-red-900/20 text-slate-700 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-500 transition-all active:scale-95">
-                            <i data-lucide="x" class="w-6 h-6"></i>
+                            class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors">
+                            <i data-lucide="x" class="w-5 h-5"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Content Area -->
-                <div class="flex-1 overflow-y-auto p-0 bg-slate-50 dark:bg-slate-950 relative custom-scrollbar">
+                <!-- PDF Content (Matching Hire Me Iframe Area) -->
+                <div class="flex-1 overflow-hidden bg-slate-100 dark:bg-slate-950 relative">
                     <!-- Loading State -->
                     <div id="cv-loading"
-                        class="absolute inset-0 flex items-center justify-center bg-slate-50 dark:bg-slate-950 z-20">
-                        <div class="flex flex-col items-center gap-4">
+                        class="absolute inset-0 flex items-center justify-center bg-slate-100 dark:bg-slate-950 z-20">
+                        <div class="flex flex-col items-center gap-3">
                             <div
-                                class="w-12 h-12 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin">
+                                class="w-8 h-8 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin">
                             </div>
-                            <p class="text-sm font-bold text-slate-500 dark:text-slate-400 tracking-widest uppercase">
-                                Preparing Preview...</p>
+                            <p class="text-xs text-slate-500 font-bold tracking-widest uppercase">Loading Resume...</p>
                         </div>
                     </div>
 
-                    <!-- PDF Display (Using iframe but styled as a clean container) -->
-                    <div class="w-full h-full">
-                        <iframe id="resume-frame" src="assets/Update_Resume_v2%20(1).pdf"
-                            class="w-full h-full border-0 relative z-10"
-                            onload="document.getElementById('cv-loading').style.display='none'">
-                        </iframe>
-                    </div>
 
-                    <!-- Mobile/Legacy Fallback -->
-                    <div id="resume-fallback"
-                        class="hidden flex flex-col items-center justify-center h-full p-8 text-center bg-white dark:bg-slate-900">
-                        <div class="w-24 h-24 bg-blue-500/10 rounded-[2rem] flex items-center justify-center mb-8">
-                            <i data-lucide="file-text" class="w-12 h-12 text-blue-600 dark:text-blue-500"></i>
-                        </div>
-                        <h4 class="text-2xl font-black text-slate-900 dark:text-white mb-4">View Professional Resume
-                        </h4>
-                        <p class="text-slate-600 dark:text-slate-400 mb-10 max-w-sm leading-relaxed text-lg">
-                            For the best experience on mobile devices, please view the resume in full-screen mode.
-                        </p>
-                        <a href="assets/Update_Resume_v2 (1).pdf" target="_blank"
-                            class="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white rounded-[1.5rem] font-black text-xl shadow-2xl shadow-blue-500/30 transform hover:scale-105 active:scale-95 transition-all">
-                            <i data-lucide="eye" class="w-6 h-6"></i>
-                            Open Resume
-                        </a>
-                    </div>
+                    <iframe id="resume-frame" src="assets/Update_Resume_v2%20(1).pdf#toolbar=0&navpanes=0&scrollbar=0"
+                        class="w-full h-full border-0 relative z-10"
+                        onload="document.getElementById('cv-loading').style.display='none'">
+                    </iframe>
                 </div>
             </div>
         </div>
