@@ -58,6 +58,13 @@
     </script>
 
     <style>
+        /* Force dynamic viewport height for mobile */
+        .h-full-dvh {
+            height: 100vh;
+            /* Fallback */
+            height: 100dvh !important;
+        }
+
         /* Custom Styles */
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -1922,8 +1929,9 @@
             </div>
 
             <!-- Modal Content -->
+            <!-- Modal Content -->
             <div id="cv-modal-content"
-                class="relative z-10 w-full max-w-6xl h-[100dvh] md:h-[95vh] bg-white dark:bg-slate-900 rounded-none md:rounded-2xl border-0 md:border border-slate-200 dark:border-white/10 flex flex-col overflow-hidden shadow-2xl transition-all duration-300">
+                class="relative z-10 w-full max-w-6xl h-full-dvh md:h-[95vh] bg-white dark:bg-slate-900 rounded-none md:rounded-2xl border-0 md:border border-slate-200 dark:border-white/10 flex flex-col overflow-hidden shadow-2xl transition-all duration-300">
 
                 <!-- Header -->
                 <div
