@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/logo-new.png">
+    <title>Hire Me | Md. Mahim Hossain</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+
+    <!-- Theme Initialization Script -->
+    <script>
+            (function () {
+                const theme = localStorage.getItem('theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (theme === 'dark' || (!theme && prefersDark)) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            })();
+    </script>
+    <style>
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Ensure the iframe is responsive */
+        .aspect-video {
+            aspect-ratio: 16 / 9;
+        }
+
+        /* Typewriter Cursor */
+        .typewriter-cursor {
+            display: inline-block;
+            width: 0.1em;
+            background-color: #3b82f6;
+            margin-left: 0.1em;
+            animation: blink 1s infinite;
+            vertical-align: baseline;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes slide-up {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .animate-slide-up {
+            animation: slide-up 0.3s ease-out forwards;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-[#020617] text-slate-800 dark:text-slate-200 transition-colors duration-300 overflow-x-hidden">
+
+
+    <div class="min-h-screen flex flex-col items-center p-4 sm:p-6">
+        <div
+            class="w-full max-w-4xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 p-8 md:p-12 rounded-3xl shadow-2xl mb-12">
+
+
+            <!-- Page Header -->
+            <div class="mb-12 text-center" data-aos="fade-down">
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-500 border border-blue-500/20 mb-6">
+                    <i data-lucide="award" class="w-4 h-4"></i>
+                    <span class="text-sm font-medium uppercase tracking-widest">Available for New Opportunities</span>
+                </div>
+
+                <h1 class="text-4xl md:text-6xl font-black mb-6 text-slate-900 dark:text-white leading-tight">
+                    Let's Build Something <br class="hidden md:block">
+                    <span id="typewriter-text"
+                        class="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent"></span><span
+                        class="typewriter-cursor text-blue-500"></span>
+                </h1>
+                <p class="text-xl font-bold text-slate-500 dark:text-slate-400 mt-2">
+                    Elevate your organization's security posture with a dedicated <span
+                        class="text-blue-600 dark:text-blue-400 font-semibold">SOC Analyst</span> and <span
+                        class="text-blue-600 dark:text-blue-400 font-semibold">Security Researcher</span>. Passionate
+                    about defending digital assets and building resilient security operations.
+                </p>
+            </div>
+
+            <!-- Expertise Highlights -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16" data-aos="fade-up">
+                <div
+                    class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700/50 hover:border-blue-500/50 transition-all group">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-600 mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">SOC Operations</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Expertise in 24/7 monitoring, alert triaging,
+                        and managing security incidents with precision.</p>
+                </div>
+                <div
+                    class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700/50 hover:border-cyan-500/50 transition-all group">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-600 mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="radar" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Threat Hunting</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Proactive identification of hidden threats and
+                        vulnerabilities using advanced telemetry and analysis.</p>
+                </div>
+                <div
+                    class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700/50 hover:border-indigo-500/50 transition-all group">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-600 mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="code-2" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">SIEM Engineering</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Deploying and optimizing Wazuh and ELK stacks
+                        for comprehensive security visibility.</p>
+                </div>
+            </div>
+
+
+            <!-- 1. Application Form -->
+            <form id="hire-form"
+                class="space-y-8 bg-slate-50 dark:bg-slate-800/30 p-8 rounded-3xl border border-slate-200 dark:border-slate-700/50"
+                action="https://formspree.io/f/xzzngooy" method="POST" data-aos="fade-up">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+                        <i data-lucide="send" class="w-8 h-8 text-blue-500"></i>
+                        Work Inquiry Form
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-400 mt-2">Interested in hiring me? Please fill out the form
+                        below to get started.</p>
+                </div>
+
+                <!-- Row 1: Name and Email -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="full_name"
+                            class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Full Name</label>
+                        <input type="text" id="full_name" name="full_name" required placeholder="e.g., John Doe"
+                            class="w-full p-3 bg-slate-100 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                    </div>
+                    <div>
+                        <label for="email"
+                            class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Email
+                            Address</label>
+                        <input type="email" id="email" name="email" required placeholder="e.g., john@example.com"
+                            class="w-full p-3 bg-slate-100 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                    </div>
+                </div>
+
+                <!-- Row 2: Role and Experience -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="target_role"
+                            class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Target Job
+                            Role</label>
+                        <input type="text" id="target_role" name="target_role"
+                            placeholder="e.g., SOC Analyst, Security Engineer" required
+                            class="w-full p-3 bg-slate-100 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                    </div>
+                    <div>
+                        <label for="years_experience"
+                            class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Years of
+                            Professional Experience</label>
+                        <input type="number" id="years_experience" name="years_experience" min="0" required
+                            class="w-full p-3 bg-slate-100 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                    </div>
+                </div>
+
+                <!-- Row 3: Salary and Job Type -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="salary"
+                            class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Expected Monthly
+                            Salary (BDT/USD)</label>
+                        <input type="text" id="salary" name="salary" placeholder="e.g., 80,000 BDT or $800"
+                            class="w-full p-3 bg-slate-100 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                    </div>
+                    <div>
+                        <label for="job_type"
+                            class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Preferred Job
+                            Type</label>
+                        <select id="job_type" name="job_type"
+                            class="w-full p-3 bg-slate-100 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                            <option value="">Select Type</option>
+                            <option value="full_time">Full-Time</option>
+                            <option value="part_time">Part-Time</option>
+                            <option value="contract">Contract</option>
+                            <option value="remote">Remote Only</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Row 4: Cover Letter -->
+                <div>
+                    <label for="cover_letter"
+                        class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Message / Cover
+                        Letter</label>
+                    <textarea id="cover_letter" name="cover_letter" rows="5" required
+                        class="w-full p-3 bg-slate-100 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white focus:ring-blue-500 focus:border-blue-500 transition duration-200"></textarea>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" id="hire-submit-btn"
+                        class="w-full px-6 py-3 bg-blue-600 text-white text-lg font-bold rounded-xl shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-[1.01] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                        <span id="hire-btn-text">Submit Application</span>
+                        <i id="hire-btn-icon" data-lucide="send" class="w-5 h-5"></i>
+                        <!-- Loading Spinner -->
+                        <svg id="hire-btn-loading" class="animate-spin h-5 w-5 text-white hidden"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                            </circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Success Message -->
+                <div id="hire-success"
+                    class="hidden p-4 rounded-xl bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 flex items-center gap-3">
+                    <i data-lucide="check-circle" class="w-6 h-6 shrink-0"></i>
+                    <div>
+                        <h4 class="font-bold">Application Received!</h4>
+                        <p class="text-sm">Thank you for your interest. I will review your application and get back to
+                            you soon.</p>
+                    </div>
+                </div>
+
+                <!-- Error Message -->
+                <div id="hire-error"
+                    class="hidden p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 flex items-center gap-3">
+                    <i data-lucide="alert-circle" class="w-6 h-6 shrink-0"></i>
+                    <div>
+                        <h4 class="font-bold">Submission Failed</h4>
+                        <p class="text-sm">Something went wrong. Please try again or contact me directly via WhatsApp.
+                        </p>
+                    </div>
+                </div>
+            </form>
+
+            <!-- 2. Direct Contact Options -->
+            <div class="mt-20 pt-12 border-t border-slate-200 dark:border-slate-800" data-aos="fade-up">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-4">Direct Communication</h2>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+                        Need a quick response? Reach out through these direct channels for immediate consultation.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+                    <!-- WhatsApp Button -->
+                    <a href="https://wa.me/8801866928533" target="_blank"
+                        class="inline-flex items-center justify-center px-6 py-4 bg-green-500 text-white text-xl font-bold rounded-xl shadow-lg hover:bg-green-600 transition duration-300 transform hover:scale-105">
+                        <!-- WhatsApp Icon (Inline SVG) -->
+                        <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                        </svg>
+                        WhatsApp Chat
+                    </a>
+
+                    <!-- Phone Call Button -->
+                    <a href="tel:+8801866928533"
+                        class="inline-flex items-center justify-center px-6 py-4 bg-blue-500 text-white text-xl font-bold rounded-xl shadow-lg hover:bg-blue-600 transition duration-300 transform hover:scale-105">
+                        <!-- Phone Icon (Inline SVG) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="mr-3">
+                            <path
+                                d="M22 16.92v3.06a2 2 0 0 1-2.2 1.93 17.9 17.9 0 0 1-13.78-4.74A17.9 17.9 0 0 1 2.11 5.22a2 2 0 0 1 1.93-2.2h3.06a2 2 0 0 1 2 1.77 11.33 11.33 0 0 0 .54 2.8c.2.53-.05 1.1-.47 1.46l-2.28 2.28a15.75 15.75 0 0 0 7.82 7.82l2.28-2.28c.36-.42.93-.67 1.46-.47a11.33 11.33 0 0 0 2.8.54 2 2 0 0 1 1.77 2z">
+                            </path>
+                        </svg>
+                        Call Me
+                    </a>
+
+
+                </div>
+
+                <!-- 3. Location Section (Moved to the bottom) -->
+                <div id="location-details"
+                    class="w-full max-w-4xl bg-white dark:bg-slate-800 p-8 md:p-12 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-700 mt-6 mb-12">
+                    <h2 class="text-3xl font-bold mb-4 text-slate-900 dark:text-white text-center">
+                        My Location
+                    </h2>
+                    <p class="text-xl text-slate-700 dark:text-slate-300 mb-6 text-center">
+                        Current Location: <span class="font-semibold text-blue-600 dark:text-blue-400">Dhaka,
+                            Bangladesh</span>
+                    </p>
+
+                    <!-- Click to View Map Placeholder -->
+                    <div id="map-placeholder" class="text-center">
+                        <button onclick="showMap()"
+                            class="inline-flex items-center px-8 py-3 bg-blue-600 text-white text-lg font-bold rounded-xl shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-[1.03]">
+                            Click to View Location on Google Map
+                        </button>
+                    </div>
+
+                    <!-- Google Map Container (Initially hidden) -->
+                    <div id="map-container" class="hidden mt-6 pt-4">
+                        <h3
+                            class="text-xl font-bold text-blue-600 dark:text-blue-300 mb-4 flex items-center justify-center">
+                            <!-- Location Pin Icon (Smaller) -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="mr-2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            Dhaka, Bangladesh
+                        </h3>
+                        <div
+                            class="aspect-video w-full rounded-lg overflow-hidden shadow-2xl border border-blue-500 dark:border-blue-700">
+                            <!-- Google Maps Iframe Embed -->
+                            <iframe
+                                src="https://maps.google.com/maps?q=Dhaka,%20Bangladesh&t=&z=12&ie=UTF8&iwloc=&output=embed"
+                                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 text-center">
+                            *This map shows your current location for reference.
+                        </p>
+                        <div class="mt-4 flex justify-center">
+                            <button onclick="minimizeMap()"
+                                class="text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 flex items-center gap-1 transition-colors">
+                                <i data-lucide="minimize-2" class="w-4 h-4"></i>
+                                Minimize Location View
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <!-- WhatsApp Chat Widget -->
+                <div class="fixed bottom-8 right-8 z-50 flex flex-col items-end gap-4">
+                    <!-- Chat Popup -->
+                    <div id="whatsapp-popup"
+                        class="hidden mb-4 w-80 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-700 animate-slide-up">
+                        <!-- Header -->
+                        <div class="bg-gradient-to-r from-green-500 to-green-600 p-4 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <img src="assets/logo-new.png" alt="Md. Mahim Hossain"
+                                    class="w-12 h-12 rounded-full border-2 border-white">
+                                <div>
+                                    <h4 class="text-white font-bold text-sm">Md. Mahim Hossain</h4>
+                                    <p class="text-green-100 text-[10px]">Typically replies instantly</p>
+                                </div>
+                            </div>
+                            <button onclick="toggleWhatsAppPopup()"
+                                class="text-white hover:bg-white/20 rounded-lg p-1 transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Chat Body -->
+                        <div class="p-4 bg-slate-50 dark:bg-slate-800"
+                            style="background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJhIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiPjxwYXRoIGQ9Ik0yMCAyMG0tMyAwYTMgMyAwIDEgMCA2IDBhMyAzIDAgMSAwIC02IDBtLTE3IDBhMyAzIDAgMSAwIDYgMGEzIDMgMCAxIDAgLTYgMG0xNyAtMTdhMyAzIDAgMSAwIDYgMGEzIDMgMCAxIDAgLTYgMG0tMTcgMGEzIDMgMCAxIDAgNiAwYTMgMyAwIDEgMCAtNiAwIiBmaWxsPSJub25lIiBzdHJva2U9IiNlNWU3ZWIiIG9wYWNpdHk9IjAuMyIgc3Ryb2tlLXdpZHRoPSIwLjUiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjYSkiLz48L3N2Zz4='); min-height: 120px;">
+                            <div
+                                class="bg-slate-700 dark:bg-slate-700 rounded-lg p-3 text-sm text-white inline-block max-w-[85%]">
+                                <p class="mb-1">Hello! 👋</p>
+                                <p>Welcome to my portfolio. How can I assist you with your security needs today?</p>
+                                <span class="text-xs text-slate-400 mt-1 block text-right">Just now</span>
+                            </div>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="p-4 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
+                            <a href="https://wa.me/8801866928533?text=Hello%20Md.%20Mahim%20Hossain,%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20discuss%20security%20opportunities."
+                                target="_blank"
+                                class="flex items-center justify-center gap-2 w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-4 rounded-xl transition-all shadow-lg hover:shadow-xl">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                                </svg>
+                                Start Chat
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- WhatsApp Float Button -->
+                    <button onclick="toggleWhatsAppPopup()"
+                        class="w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-2xl shadow-green-500/50 flex items-center justify-center transition-all hover:scale-110 group relative"
+                        title="Chat on WhatsApp">
+                        <!-- WhatsApp Icon -->
+                        <svg id="whatsapp-icon" class="w-7 h-7 group-hover:scale-110 transition-transform"
+                            fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                        </svg>
+                        <!-- Close Icon -->
+                        <svg id="close-icon" class="w-7 h-7 hidden" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <script>
+                // Initialize Icons
+                lucide.createIcons();
+
+                function showMap() {
+                    const placeholder = document.getElementById('map-placeholder');
+                    const container = document.getElementById('map-container');
+                    placeholder.classList.add('hidden');
+                    container.classList.remove('hidden');
+                    lucide.createIcons(); // Re-initialize icons for the newly shown content
+                }
+
+                function minimizeMap() {
+                    const placeholder = document.getElementById('map-placeholder');
+                    const container = document.getElementById('map-container');
+                    container.classList.add('hidden');
+                    placeholder.classList.remove('hidden');
+                }
+
+                // Function to close the modal from within the iframe
+                function closeModal() {
+                    try {
+                        // Send message to parent window to close the modal
+                        window.parent.postMessage({
+                            type: 'close-hire-me-modal'
+                        }, '*');
+                    } catch (e) {
+                        // If we can't access parent, navigate to index.html
+                        window.location.href = 'index.html';
+                    }
+                }
+
+                // Sync theme with parent window
+                function syncThemeWithParent() {
+                    try {
+                        // Check if parent window has dark mode
+                        const parentHasDarkMode = window.parent.document.documentElement.classList.contains('dark');
+
+                        if (parentHasDarkMode) {
+                            document.documentElement.classList.add('dark');
+                        } else {
+                            document.documentElement.classList.remove('dark');
+                        }
+                    } catch (e) {
+                        // If we can't access parent (different origin), check localStorage or system preference
+                        if (localStorage.getItem('theme') === 'dark' ||
+                            (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                            document.documentElement.classList.add('dark');
+                        } else {
+                            document.documentElement.classList.remove('dark');
+                        }
+                    }
+                }
+
+                // Sync theme on load
+                syncThemeWithParent();
+
+                // Listen for theme changes from parent window
+                window.addEventListener('message', function (event) {
+                    if (event.data && event.data.type === 'theme-change') {
+                        if (event.data.theme === 'dark') {
+                            document.documentElement.classList.add('dark');
+                        } else {
+                            document.documentElement.classList.remove('dark');
+                        }
+                    }
+                });
+
+                // Form Submission Handler
+                const hireForm = document.querySelector('form');
+                if (hireForm) {
+                    const hireSubmitBtn = document.getElementById('hire-submit-btn');
+                    const hireBtnText = document.getElementById('hire-btn-text');
+                    const hireBtnLoading = document.getElementById('hire-btn-loading');
+                    const hireBtnIcon = document.getElementById('hire-btn-icon');
+                    const hireSuccessMsg = document.getElementById('hire-success');
+                    const hireErrorMsg = document.getElementById('hire-error');
+
+                    hireForm.addEventListener('submit', async function (e) {
+                        e.preventDefault();
+
+                        // Show loading state
+                        hireSubmitBtn.disabled = true;
+                        hireBtnText.classList.add('hidden');
+                        hireBtnIcon.classList.add('hidden');
+                        hireBtnLoading.classList.remove('hidden');
+
+                        // Hide any previous messages
+                        hireSuccessMsg.classList.add('hidden');
+                        hireErrorMsg.classList.add('hidden');
+
+                        try {
+                            const formData = new FormData(hireForm);
+                            const response = await fetch(hireForm.action, {
+                                method: 'POST',
+                                body: formData,
+                                headers: {
+                                    'Accept': 'application/json'
+                                }
+                            });
+
+                            if (response.ok) {
+                                // Show success message
+                                hireSuccessMsg.classList.remove('hidden');
+                                hireForm.reset();
+
+                                // Reinitialize icons
+                                lucide.createIcons();
+                            } else {
+                                // Show error message
+                                hireErrorMsg.classList.remove('hidden');
+                                lucide.createIcons();
+                            }
+                        } catch (error) {
+                            // Show error message
+                            hireErrorMsg.classList.remove('hidden');
+                            lucide.createIcons();
+                            console.error('Form submission error:', error);
+                        } finally {
+                            // Reset button state
+                            hireSubmitBtn.disabled = false;
+                            hireBtnText.classList.remove('hidden');
+                            hireBtnIcon.classList.remove('hidden');
+                            hireBtnLoading.classList.add('hidden');
+                        }
+                    });
+                }
+
+                // Typewriter Animation
+                const phrases = ['Secure Together', 'Stronger Together', 'Better Together', 'Resilient Together'];
+                let phraseIndex = 0;
+                let charIndex = 0;
+                let isDeleting = false;
+                let typeSpeed = 100;
+
+                function typeWriter() {
+                    const typewriterElement = document.getElementById('typewriter-text');
+                    if (!typewriterElement) return;
+
+                    const currentPhrase = phrases[phraseIndex];
+
+                    if (isDeleting) {
+                        typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                        charIndex--;
+                        typeSpeed = 50;
+                    } else {
+                        typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                        charIndex++;
+                        typeSpeed = 100;
+                    }
+
+                    if (!isDeleting && charIndex === currentPhrase.length) {
+                        isDeleting = true;
+                        typeSpeed = 2000;
+                    } else if (isDeleting && charIndex === 0) {
+                        isDeleting = false;
+                        phraseIndex = (phraseIndex + 1) % phrases.length;
+                        typeSpeed = 500;
+                    }
+
+                    setTimeout(typeWriter, typeSpeed);
+                }
+
+                // Start animation on load
+                document.addEventListener('DOMContentLoaded', () => {
+                    setTimeout(typeWriter, 1000);
+                });
+
+                // WhatsApp Popup Toggle
+                function toggleWhatsAppPopup() {
+                    const popup = document.getElementById('whatsapp-popup');
+                    const whatsappIcon = document.getElementById('whatsapp-icon');
+                    const closeIcon = document.getElementById('close-icon');
+
+                    if (popup && whatsappIcon && closeIcon) {
+                        popup.classList.toggle('hidden');
+
+                        // Toggle icons
+                        if (popup.classList.contains('hidden')) {
+                            // Popup is closed - show WhatsApp icon
+                            whatsappIcon.classList.remove('hidden');
+                            closeIcon.classList.add('hidden');
+                        } else {
+                            // Popup is open - show down arrow
+                            whatsappIcon.classList.add('hidden');
+                            closeIcon.classList.remove('hidden');
+                        }
+                    }
+                }
+            </script>
+</body>
+
+</html>
