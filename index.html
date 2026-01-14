@@ -3195,17 +3195,23 @@ END:VCARD`;
             if (loading) loading.style.display = 'flex';
 
             // Direct View logic
-            const pdfPath = 'assets/resume.pdf';
+            const timestamp = new Date().getTime();
+            const pdfPath = `assets/resume.pdf?v=${timestamp}`;
             const fullUrl = new URL(pdfPath, window.location.href).href;
 
             // Use Google Viewer for Mobile to ensure "Direct View", Native Iframe for Desktop
             const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-            if (isMobile) {
-                frame.src = `https://docs.google.com/viewer?url=${encodeURIComponent(fullUrl)}&embedded=true`;
-            } else {
-                frame.src = pdfPath;
-            }
+            // Reset frame src first to force reload
+            frame.src = 'about:blank';
+
+            setTimeout(() => {
+                if (isMobile) {
+                    frame.src = `https://docs.google.com/viewer?url=${encodeURIComponent(fullUrl)}&embedded=true`;
+                } else {
+                    frame.src = pdfPath;
+                }
+            }, 50);
 
             // Wait a frame for the display:flex to apply
             requestAnimationFrame(() => {
