@@ -43,23 +43,18 @@
     <!-- Vanilla-tilt.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
-    <!-- PDF.js for Universal Resume Preview -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-    <script>
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
-    </script>
 
     <!-- Theme Initialization Script -->
     <script>
-        (function () {
-            const theme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (theme === 'dark' || (!theme && prefersDark)) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-        })();
+            (function () {
+                const theme = localStorage.getItem('theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (theme === 'dark' || (!theme && prefersDark)) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            })();
     </script>
 
     <style>
@@ -1965,22 +1960,10 @@
                         </div>
                     </div>
 
-                    <!-- Mobile Fallback Message (Visible behind canvas if it doesn't load) -->
-                    <div
-                        class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-0 bg-slate-50 dark:bg-slate-900">
-                        <div class="opacity-20 mb-4">
-                            <i data-lucide="file-text" class="w-20 h-20 text-slate-400"></i>
-                        </div>
-                        <h4 class="text-sm font-bold text-slate-600 dark:text-slate-400 mb-2">Resume Preview</h4>
-                        <p class="text-[10px] text-slate-500 dark:text-slate-500 max-w-[200px]">Mobile browsers may
-                            require an external PDF viewer.</p>
-                    </div>
-
-                    <!-- PDF.js Canvas Container -->
-                    <div id="pdf-viewer"
-                        class="w-full h-full relative z-10 overflow-auto flex flex-col items-center bg-slate-100 dark:bg-slate-900 shadow-inner">
-                        <div id="pdf-canvas-container" class="flex flex-col gap-4 p-4"></div>
-                    </div>
+                    <!-- Direct View Iframe (Desktop Native / Mobile Google Viewer) -->
+                    <iframe id="resume-frame" src="about:blank" class="w-full h-full border-0 relative z-10"
+                        title="Resume" onload="document.getElementById('cv-loading').style.display='none'">
+                    </iframe>
                 </div>
             </div>
         </div>
@@ -3184,92 +3167,29 @@ END:VCARD`;
         }
 
         // CV Modal Functions
-        let pdfDoc = null;
-
-        async function renderPDF(url) {
-            const loading = document.getElementById('cv-loading');
-            const container = document.getElementById('pdf-canvas-container');
-            if (loading) {
-                loading.style.display = 'flex';
-                loading.innerHTML = `
-                    <div class="flex flex-col items-center gap-3">
-                        <div class="w-8 h-8 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin"></div>
-                        <p class="text-xs text-slate-500 font-bold tracking-widest uppercase">Loading Resume...</p>
-                    </div>
-                `;
-            }
-            if (container) container.innerHTML = '';
-
-            try {
-                // Fetch the PDF using a more robust method
-                const loadingTask = pdfjsLib.getDocument({
-                    url: url,
-                    isEvalSupported: false
-                });
-
-                pdfDoc = await loadingTask.promise;
-
-                // Render all pages
-                for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
-                    const page = await pdfDoc.getPage(pageNum);
-
-                    // Set scale - fixed scale for better quality
-                    const scale = window.innerWidth < 768 ? 1.0 : 1.5;
-                    const viewport = page.getViewport({ scale: scale });
-
-                    const canvas = document.createElement('canvas');
-                    const context = canvas.getContext('2d');
-                    canvas.height = viewport.height;
-                    canvas.width = viewport.width;
-                    canvas.className = "shadow-md rounded-sm max-w-full h-auto mb-4 bg-white mx-auto";
-
-                    const renderContext = {
-                        canvasContext: context,
-                        viewport: viewport,
-                        enableWebGL: true
-                    };
-
-                    if (container) container.appendChild(canvas);
-                    await page.render(renderContext).promise;
-                }
-
-                if (loading) loading.style.display = 'none';
-            } catch (error) {
-                console.error('PDF.js rendering failed, using fallback:', error);
-                if (loading) {
-                    loading.innerHTML = `
-                        <div class="p-8 text-center bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700">
-                             <div class="flex justify-center mb-4">
-                                <div class="p-3 bg-red-100 dark:bg-red-900/30 rounded-full">
-                                    <i data-lucide="alert-circle" class="w-8 h-8 text-red-600"></i>
-                                </div>
-                             </div>
-                            <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Notice</h4>
-                            <p class="text-sm text-slate-600 dark:text-slate-400 mb-6">Your browser might be preventing the preview. You can view it directly or download it.</p>
-                            <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                                <a href="${url}" target="_blank" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-bold transition-all shadow-md flex items-center justify-center gap-2">
-                                     <i data-lucide="external-link" class="w-4 h-4"></i> View Resume
-                                </a>
-                                <a href="${url}" download class="px-6 py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white rounded-xl text-sm font-bold transition-all border border-slate-200 dark:border-slate-700 flex items-center justify-center gap-2">
-                                     <i data-lucide="download" class="w-4 h-4"></i> Download
-                                </a>
-                            </div>
-                        </div>
-                    `;
-                    // Re-initialize icons for the error message
-                    if (typeof lucide !== 'undefined') lucide.createIcons();
-                }
-            }
-        }
-
         function openCVModal() {
             const modal = document.getElementById('cv-modal');
             const content = document.getElementById('cv-modal-content');
+            const frame = document.getElementById('resume-frame');
+            const loading = document.getElementById('cv-loading');
+
             modal.classList.remove('hidden');
             modal.classList.add('flex');
 
-            // Start rendering the PDF
-            renderPDF('assets/resume.pdf');
+            if (loading) loading.style.display = 'flex';
+
+            // Direct View logic
+            const pdfPath = 'assets/resume.pdf';
+            const fullUrl = new URL(pdfPath, window.location.href).href;
+
+            // Use Google Viewer for Mobile to ensure "Direct View", Native Iframe for Desktop
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+            if (isMobile) {
+                frame.src = `https://docs.google.com/viewer?url=${encodeURIComponent(fullUrl)}&embedded=true`;
+            } else {
+                frame.src = pdfPath;
+            }
 
             // Wait a frame for the display:flex to apply
             requestAnimationFrame(() => {
@@ -3291,6 +3211,7 @@ END:VCARD`;
         function closeCVModal() {
             const modal = document.getElementById('cv-modal');
             const content = document.getElementById('cv-modal-content');
+            const frame = document.getElementById('resume-frame');
 
             if (content) content.classList.remove('animate-scale-up');
 
@@ -3299,11 +3220,15 @@ END:VCARD`;
                 modal.classList.remove('flex');
                 document.body.style.overflow = 'auto';
 
+                // Reset frame to stop PDF loading/audio
+                if (frame) frame.src = 'about:blank';
+
                 // Show Navigation Bar
                 const nav = document.querySelector('nav');
                 if (nav) nav.classList.remove('hidden');
             }, 200);
         }
+
 
         // Hire Me Modal Functions
         function openHireMeModal() {
