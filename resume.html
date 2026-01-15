@@ -155,7 +155,7 @@
         // Initialize Icons
         lucide.createIcons();
 
-        // Resume Loading Logic (Same robust logic as main site)
+        // Resume Loading Logic
         document.addEventListener('DOMContentLoaded', () => {
             const frame = document.getElementById('resume-frame');
             const loading = document.getElementById('resume-loading');
@@ -165,21 +165,26 @@
             const pdfPath = `assets/resume.pdf?v=${timestamp}`;
             const fullUrl = new URL(pdfPath, window.location.href).href;
 
-            // Detect Mobile
+            // Detect Mobile and Local Environment
             const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const isLocal = window.location.hostname === 'localhost' ||
+                window.location.hostname === '127.0.0.1' ||
+                window.location.protocol === 'file:' ||
+                /^192\.168\./.test(window.location.hostname) ||
+                /^10\./.test(window.location.hostname) ||
+                window.location.hostname.endsWith('.local');
 
             // Load logic
             setTimeout(() => {
-                if (isMobile) {
-                    // Use Google Viewer for mobile
+                // Google Viewer only works with public URLs
+                if (isMobile && !isLocal) {
                     frame.src = `https://docs.google.com/viewer?url=${encodeURIComponent(fullUrl)}&embedded=true`;
                 } else {
-                    // Use Native Viewer for desktop
+                    // Fallback to native iframe rendering
                     frame.src = pdfPath;
                 }
 
-                // Hide loader after a reasonable delay (iframe onload is flaky with Google Viewer)
-                // We keep it visible for 2 seconds to mask the initial white flash
+                // Hide loader
                 setTimeout(() => {
                     loading.style.opacity = '0';
                     setTimeout(() => {
