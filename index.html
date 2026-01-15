@@ -66,6 +66,13 @@
         }
 
         /* Custom Styles */
+        html,
+        body {
+            max-width: 100%;
+            overflow-x: hidden;
+            position: relative;
+        }
+
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             -webkit-user-select: none;
@@ -827,7 +834,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="relative z-10 pt-16">
+    <main class="relative z-10 pt-16 overflow-x-hidden">
 
         <!-- Hero Section -->
         <!-- Hero Section -->
@@ -907,7 +914,7 @@
                         <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white/5">
                             <img src="assets/setup.jpg" alt="Workspace Setup" class="w-full h-auto object-cover">
                         </div>
-                        <div class="absolute -z-10 top-4 -right-4 w-full h-full bg-slate-800/20 rounded-2xl">
+                        <div class="absolute -z-10 top-4 right-0 w-full h-full bg-slate-800/20 rounded-2xl">
                         </div>
                     </div>
 
@@ -1583,7 +1590,7 @@
         </section>
 
         <!-- Tools & Stack Section -->
-        <section id="tools-stack" class="py-12 px-6 bg-slate-50 dark:bg-[#020617]">
+        <section id="tools-stack" class="py-12 px-6 bg-slate-50 dark:bg-[#020617] overflow-hidden">
             <div class="max-w-7xl mx-auto">
                 <!-- Header -->
                 <div class="mb-16 text-center" data-aos="fade-up">
@@ -2090,7 +2097,7 @@
         </div>
 
         <!-- Contact Section -->
-        <section id="connect" class="py-12 px-6 bg-slate-50 dark:bg-[#020617]">
+        <section id="connect" class="py-12 px-6 bg-slate-50 dark:bg-[#020617] overflow-hidden">
             <div class="max-w-4xl mx-auto">
                 <div class="mb-12 text-center" data-aos="fade-up">
                     <h2 class="text-3xl md:text-4xl font-bold gradient-text inline-block">Connect </h2>
