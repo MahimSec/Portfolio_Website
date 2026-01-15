@@ -1959,17 +1959,15 @@
         </div>
 
         <!-- CV Modal (Resume Preview) -->
-        <!-- CV Modal (Resume Preview) -->
-        <div id="cv-modal" class="fixed inset-0 z-[100] hidden items-end md:items-center justify-center md:p-4">
+        <div id="cv-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
             <!-- Backdrop -->
             <div class="absolute inset-0 bg-slate-900/60 dark:bg-[#020617]/80 backdrop-blur-md transition-opacity duration-300"
                 onclick="closeCVModal()">
             </div>
 
             <!-- Modal Content -->
-            <!-- Modal Content -->
             <div id="cv-modal-content"
-                class="relative z-10 w-full max-w-6xl h-full-dvh md:h-[95vh] bg-white dark:bg-slate-900 rounded-none md:rounded-2xl border-0 md:border border-slate-200 dark:border-white/10 flex flex-col overflow-hidden shadow-2xl transition-all duration-300">
+                class="relative z-10 w-full max-w-6xl max-h-[90dvh] h-auto bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-white/10 flex flex-col overflow-hidden shadow-2xl transition-all duration-300">
 
                 <!-- Header -->
                 <div
@@ -1989,9 +1987,15 @@
                     <div class="flex items-center gap-2">
                         <!-- Expand Button -->
                         <a href="resume.html" target="_blank"
-                            class="hidden md:block p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 transition-colors"
+                            class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 transition-colors"
                             title="Open in Full Page">
                             <i data-lucide="external-link" class="w-5 h-5"></i>
+                        </a>
+                        <!-- Direct Link Button -->
+                        <a id="resume-direct-link" href="assets/resume.pdf" target="_blank"
+                            class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-blue-600 dark:text-blue-500 transition-colors"
+                            title="View PDF Directly">
+                            <i data-lucide="file-down" class="w-5 h-5"></i>
                         </a>
                         <!-- Close Button -->
                         <button onclick="closeCVModal()"
@@ -2394,15 +2398,15 @@
 
 
     <!-- Hire Me Modal -->
-    <div id="hire-me-modal" class="fixed inset-0 z-[100] hidden items-end md:items-center justify-center p-4">
+    <div id="hire-me-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
         <!-- Backdrop -->
         <div class="absolute inset-0 bg-slate-900/50 dark:bg-[#020617]/80 backdrop-blur-sm"
             onclick="closeHireMeModal()">
         </div>
 
         <!-- Modal Content -->
-        <div
-            class="relative z-10 w-full max-w-6xl h-[95vh] md:h-[95vh] bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 overflow-hidden flex flex-col rounded-t-3xl md:rounded-3xl shadow-2xl">
+        <div id="hire-me-modal-content"
+            class="relative z-10 w-full max-w-6xl max-h-[90dvh] h-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 overflow-hidden flex flex-col rounded-2xl shadow-2xl">
 
             <!-- Header -->
             <div
@@ -3237,9 +3241,10 @@ END:VCARD`;
             const pdfPath = `assets/resume.pdf?v=${timestamp}`;
             const fullUrl = new URL(pdfPath, window.location.href).href;
 
-            // Enhanced mobile detection (captures mobile browsers in "Desktop Site" mode)
+            // Updated Enhanced mobile detection
             const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-                (navigator.maxTouchPoints > 0 && /Macintosh/i.test(navigator.userAgent));
+                (navigator.maxTouchPoints > 0 && /Macintosh/i.test(navigator.userAgent)) ||
+                window.matchMedia('(any-pointer: coarse)').matches;
 
             // Reset frame src first to force reload
             frame.src = 'about:blank';
