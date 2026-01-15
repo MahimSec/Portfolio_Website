@@ -165,8 +165,9 @@
             const pdfPath = `assets/resume.pdf?v=${timestamp}`;
             const fullUrl = new URL(pdfPath, window.location.href).href;
 
-            // Detect Mobile and Local Environment
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            // Enhanced mobile detection (captures mobile browsers in "Desktop Site" mode)
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                (navigator.maxTouchPoints > 0 && /Macintosh/i.test(navigator.userAgent));
             const isLocal = window.location.hostname === 'localhost' ||
                 window.location.hostname === '127.0.0.1' ||
                 window.location.protocol === 'file:' ||
